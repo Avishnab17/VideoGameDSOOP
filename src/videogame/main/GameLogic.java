@@ -26,7 +26,6 @@ import java.util.Scanner;
         //story elements
         //method readInt
         //method clearConsole
-
         public static void characterInfo(){
             clearConsole();
             printHeading("CHARACTER INFO");
@@ -44,7 +43,7 @@ import java.util.Scanner;
                 System.out.println("Offensive trait: "+player.atkUpgrades[player.numAtkUpgrades-1]);
                 printSeperator(20);
             }
-            if(player.numDefUpgrades> 0){
+            if(player.numDefUpgrades > 0){
                 System.out.println("Defensive trait: "+player.defUpgrade[player.numDefUpgrades - 1]);
             }
             anythingToContinue();
