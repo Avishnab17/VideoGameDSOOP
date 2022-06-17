@@ -208,10 +208,6 @@ public class GameLogic {
             gameLoop();
         }
 
-        //method checkAct
-        //method continueJourney
-        //method CharacterInfo
-        //method printMenu
         public static void gameLoop(){
             while (isRunning) {
                 printMenu();
