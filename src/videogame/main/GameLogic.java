@@ -48,7 +48,15 @@ import java.util.Scanner;
             }
             anythingToContinue();
         }
-
+        public static void printMenu(){
+            clearConsole();
+            printHeading(places[place]);
+            System.out.println("Choose an action:");
+            printSeperator(20);
+            System.out.println("(1) Continue on your Journey ");
+            System.out.println("(2) Character Information");
+            System.out.println("(3) Exit Game");
+        }
         //method gameLoop
 
 
@@ -56,6 +64,56 @@ import java.util.Scanner;
 //method continueJourney
         //method CharacterInfo
         //method printMenu
+        public static void printMenu(){
+            clearConsole();
+            printHeading(places[place]);
+            System.out.println("Choose an action:");
+            printSeperator(20);
+            System.out.println("(1) Continue on your Journey ");
+            System.out.println("(2) Character Information");
+            System.out.println("(3) Exit Game");
+        }
+
+        public static void startGame(){
+            boolean nameSet=false;
+            String name;
+            //print title screen
+            clearConsole();
+            printSeperator(40);
+            printSeperator(30;
+            System.out.println(" AGE OF EVIL EMPEROR ");
+            printSeperator(30);
+            printSeperator(40);
+            anythingToContinue();
+
+            do{
+                clearConsole();
+                printHeading("Whats's your name ?");
+                name=scanner.next();
+                clearConsole();
+                printHeading("Your name is "+name"./Is that correct?");
+                System.out.println("(1) Yes!");
+                System.out.println("(2) No,I want to change my name.");
+                int input=readInt("->",2);
+                if(input==1)
+                    nameSet=true;
+            }while(!nameSet);
+
+            //print story intro
+            Story.printIntro();
+
+            //creating player object with name
+            player=new Player(name);
+
+            //print first story intro
+            Story.printFirstActIntro();
+
+            //set Running to true for game loop to continue
+            isRunnining = true;
+
+            //start main game loop
+            gameLoop();
+        }
         public static void gameLoop(){
             while (isRunning) {
                 printMenu();
