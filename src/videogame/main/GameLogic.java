@@ -1,16 +1,8 @@
 package videogame.main;
-
 import java.util.Scanner;
 
 //
 public class GameLogic {
-
-    package videogame.main;
-
-import java.util.Scanner;
-
-    public class GameLogic {
-
         static Scanner scanner = new Scanner(System.in);
         static Player player;
         public static boolean isRunning;
@@ -22,10 +14,46 @@ import java.util.Scanner;
 
 
         public static int place=0, act;
-        public static String[] places = {"Everlasting Mountains", "Haunted Landlines", "Castle of the Evil Emperor", "Throne Room"}
         //story elements
+        public static String[] places = {"Everlasting Mountains", "Haunted Landlines", "Castle of the Evil Emperor", "Throne Room"};
+
         //method readInt
+        public static int readInt(String prompt, int userChoices) {
+            int input;
+            do {
+                System.out.println(prompt);
+                try {
+                    input = Integer.parseInt(scanner.next());
+                } catch (Exception e) {
+                    input = -1;
+                    System.out.println("Please enter an integer!");
+                }
+            } while (input < 1 || input > userChoices);
+            return input;
+        }
         //method clearConsole
+        public static void clearConsole(){
+            for(int i=0;i<100;i++)
+                System.out.println();
+        }
+        //print separator
+        public static void printSeperator(int n){
+            for(int i=0;i<n;i++)
+                System.out.printf("-");
+            System.out.println();
+        }
+
+        public static void printHeading(String title){
+        printSeperator(30);
+        System.out.println(title);
+        printSeperator(30);
+        }
+
+         //method to stop the game until user enters anything
+         public static void anythingToContinue(){
+         System.out.println("\nEnter anything to continue...");
+         scanner.next();
+         }
         public static void characterInfo(){
             clearConsole();
             printHeading("CHARACTER INFO");
@@ -49,13 +77,15 @@ import java.util.Scanner;
             anythingToContinue();
         }
 
-        //method gameLoop
+        //to continue journey
+        public static void continueJourney(){
+            //check if act must be increased
+            checkAct();
+            //check if game is in last act
+            if(act !=4)
+                randomEncounter();
+        }
 
-
-        //method checkAct
-//method continueJourney
-        //method CharacterInfo
-        //method printMenu
         public static void printMenu(){
             clearConsole();
             printHeading(places[place]);
@@ -65,6 +95,7 @@ import java.util.Scanner;
             System.out.println("(2) Character Information");
             System.out.println("(3) Exit Game");
         }
+        //method gameLoop
 
         public static void startGame(){
             boolean nameSet=false;
@@ -90,10 +121,6 @@ import java.util.Scanner;
                 if(input==1)
                     nameSet=true;
             }while(!nameSet);
-
-            //print story intro
-            Story.printIntro();
-
             //creating player object with name
             player=new Player(name);
 
@@ -106,6 +133,11 @@ import java.util.Scanner;
             //start main game loop
             gameLoop();
         }
+
+        //method checkAct
+        //method continueJourney
+        //method CharacterInfo
+        //method printMenu
         public static void gameLoop(){
             while (isRunning) {
                 printMenu();
