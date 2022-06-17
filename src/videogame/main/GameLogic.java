@@ -26,28 +26,7 @@ import java.util.Scanner;
         //story elements
         //method readInt
         //method clearConsole
-        public static void characterInfo(){
-            clearConsole();
-            printHeading("CHARACTER INFO");
-            System.out.println("player.name +"\tHP"+player.hp+"/"+player.maxHp);
-                    printSeperator(20);
-            System.out.println("Experience: "+player.xp);
-            printSeperator(20);
 
-            System.out.println("Number of Potions"+ player.pots);
-            printSeperator(20);
-
-
-            //Printing chosen traits
-            if(player.numAtkUpgrades > 0){
-                System.out.println("Offensive trait: "+player.atkUpgrades[player.numAtkUpgrades-1]);
-                printSeperator(20);
-            }
-            if(player.numDefUpgrades > 0){
-                System.out.println("Defensive trait: "+player.defUpgrade[player.numDefUpgrades - 1]);
-            }
-            anythingToContinue();
-        }
 
         public static void printMenu(){
             clearConsole();
@@ -98,8 +77,30 @@ import java.util.Scanner;
         }
 
         //method checkAct
-//method continueJourney
+        //method continueJourney
         //method CharacterInfo
+        public static void characterInfo(){
+            clearConsole();
+            printHeading("CHARACTER INFO");
+            System.out.println("player.name +"\tHP"+player.hp+"/"+player.maxHp);
+                    printSeperator(20);
+            System.out.println("Experience: "+player.xp);
+            printSeperator(20);
+
+            System.out.println("Number of Potions"+ player.pots);
+            printSeperator(20);
+
+
+            //Printing chosen traits
+            if(player.numAtkUpgrades > 0){
+                System.out.println("Offensive trait: "+player.atkUpgrades[player.numAtkUpgrades-1]);
+                printSeperator(20);
+            }
+            if(player.numDefUpgrades > 0){
+                System.out.println("Defensive trait: "+player.defUpgrade[player.numDefUpgrades - 1]);
+            }
+            anythingToContinue();
+        }
         //method printMenu
         public static void gameLoop(){
             while (isRunning) {
