@@ -56,7 +56,7 @@ public class GameLogic {
         public static void characterInfo(){
             clearConsole();
             printHeading("CHARACTER INFO");
-            System.out.println("player.name +"\tHP"+player.hp+"/"+player.maxHp);
+            System.out.println("player.name + "\tHP: " + player.hp + "/" + player.maxHp);
                     printSeperator(20);
             System.out.println("Experience: "+player.xp);
             printSeperator(20);
@@ -71,7 +71,7 @@ public class GameLogic {
                 printSeperator(20);
             }
             if(player.numDefUpgrades > 0){
-                System.out.println("Defensive trait: "+player.defUpgrade[player.numDefUpgrades - 1]);
+                System.out.println("Defensive trait: "+player.defUpgrades[player.numDefUpgrades - 1]);
             }
             anythingToContinue();
         }
@@ -92,7 +92,7 @@ public class GameLogic {
                 //assign new values to enemy
                 enemies[0]="Evil Mercenary";
                 enemies[1]="Goblin";
-                enemies[2]="Wolve Pack";
+                enemies[2]="Wolves Pack";
                 enemies[3]="Henchman of the Evil Emperor";
                 enemies[4]="Scary Stranger";
                 //assign encounter values
