@@ -324,12 +324,43 @@ public class GameLogic {
                             //increase player xp
                             player.xp += enemy.xp;
                             System.out.println("You earned "+ enemy.xp + "XP!");
+                            //random drops
+                            boolean addRest = (Math.random()*5 + 1 <=2.25);
+                            int goldEarned =(int) (Math.random()*enemy.xp);
+                            if(addRest){
+                                player.restsLeft++;
+                                System.out.println("You earned the chance to get an additional rest!");
+                            }
+                            if(goldEarned>0){
+                                player.gold += goldEarned;
+                                System.out.println("You collect " + goldEarned +"gold from the" + enemy.name + "'s corpse" );
+                            }
                             anythingToContinue();
                             break;
 
                         }
                     }else if(input == 2){
-                        //use potion (NEXT PART)
+                        //use potion
+                        clearConsole();
+                        if(player.pots>0 && player.hp < player.maxHp){
+                            //player can take a potion
+                            //make sure player wants to drink the potion
+                            System.out.println("Do you want  to drink a potion? (" +player.pots + "left).");
+                            System.out.println("(1) Yes\n(2) No, maybe later");
+                            input = readInt("-> ",2);
+                            if(input==1){
+                                //player actually took it
+                                player.hp=player.maxHp;
+                                clearConsole();
+                                printHeading("You drank a magic potion. It resrtored your health back to " + player.maxHp);
+                                anythingToContinue();
+                            }
+
+                        }else{
+                            //player CANNOT take a potion
+                            printHeading("You don't have any potions or you're at full health.");
+                            anythingToContinue();
+                        }
                     }else{
                         //RUN AWAY
                         clearConsole();
