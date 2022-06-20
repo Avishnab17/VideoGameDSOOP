@@ -250,7 +250,7 @@ public class GameLogic {
         public static void randomBattle(){
             clearConsole();
             printHeading("You encountered an evil minded creature. You'll have to fight it!");
-            anythingToContine();//lets the game pause until the player wants it to continue
+            anythingToContinue();//lets the game pause until the player wants it to continue
             //create new enemy with random name and passing it as parameter to the main method
             battle(new Enemy(enemies[(int)(Math.random()*enemies.length)],player.xp));
         }
