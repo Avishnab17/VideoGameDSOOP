@@ -3,223 +3,247 @@ import java.util.Scanner;
 
 //
 public class GameLogic {
-        static Scanner scanner = new Scanner(System.in);
-        static Player player;
-        public static boolean isRunning;
+    static Scanner scanner = new Scanner(System.in);
+    static Player player;
+    public static boolean isRunning;
 
-        //random encounters
-        public static String[] encounters = {"Battle","Battle","Battle","Rest","Rest"};
-        //enemy names
-        public static String[] enemies={"Ogre", "Ogre", "Goblin", "Goblin", "Stone Elemental"};
+    //random encounters
+    public static String[] encounters = {"Battle", "Battle", "Battle", "Rest", "Rest"};
+    //enemy names
+    public static String[] enemies = {"Ogre", "Ogre", "Goblin", "Goblin", "Stone Elemental"};
 
-        public static int place=0, act=1;
-        //story elements
-        public static String[] places = {"Everlasting Mountains", "Haunted Landlines", "Castle of the Evil Emperor", "Throne Room"};
+    public static int place = 0, act = 1;
+    //story elements
+    public static String[] places = {"Everlasting Mountains", "Haunted Landlines", "Castle of the Evil Emperor", "Throne Room"};
 
-        //method readInt
-        public static int readInt(String prompt, int userChoices) {
-            int input;
-            do {
-                System.out.println(prompt);
-                try {
-                    input = Integer.parseInt(scanner.next());
-                } catch (Exception e) {
-                    input = -1;
-                    System.out.println("Please enter an integer!");
-                }
-            } while (input < 1 || input > userChoices);
-            return input;
-        }
-        //method clearConsole
-        public static void clearConsole(){
-            for(int i=0;i<100;i++)
-                System.out.println();
-        }
-        //print separator
-        public static void printSeperator(int n){
-            for(int i=0;i<n;i++)
-                System.out.printf("-");
+    //method readInt
+    public static int readInt(String prompt, int userChoices) {
+        int input;
+        do {
+            System.out.println(prompt);
+            try {
+                input = Integer.parseInt(scanner.next());
+            } catch (Exception e) {
+                input = -1;
+                System.out.println("Please enter an integer!");
+            }
+        } while (input < 1 || input > userChoices);
+        return input;
+    }
+
+    //method clearConsole
+    public static void clearConsole() {
+        for (int i = 0; i < 100; i++)
             System.out.println();
-        }
+    }
 
-        public static void printHeading(String title){
+    //print separator
+    public static void printSeperator(int n) {
+        for (int i = 0; i < n; i++)
+            System.out.printf("-");
+        System.out.println();
+    }
+
+    public static void printHeading(String title) {
         printSeperator(30);
         System.out.println(title);
         printSeperator(30);
-        }
+    }
 
-         //method to stop the game until user enters anything
-         public static void anythingToContinue(){
-         System.out.println("\nEnter anything to continue...");
-         scanner.next();
+    //method to stop the game until user enters anything
+    public static void anythingToContinue() {
+        System.out.println("\nEnter anything to continue...");
+        scanner.next();
+    }
+
+    public static void characterInfo() {
+        clearConsole();
+        printHeading("CHARACTER INFO");
+        System.out.println("player.name" + "\t HP " + player.hp + "/" + player.maxHp);
+        printSeperator(20);
+        System.out.println("Experience: " + player.xp);
+        printSeperator(20);
+
+        System.out.println("Number of Potions" + player.pots);
+        printSeperator(20);
+
+
+        //Printing chosen traits
+        if (player.numAtkUpgrades > 0) {
+            System.out.println("Offensive trait: " + player.atkUpgrades[player.numAtkUpgrades - 1]);
+            printSeperator(20);
+        }
+        if (player.numDefUpgrades > 0) {
+            System.out.println("Defensive trait: " + player.defUpgrades[player.numDefUpgrades - 1]);
+        }
+        anythingToContinue();
+    }
+
+    //change game's values based on player xp
+    public static void checkAct() {
+        //change acts based on xp
+        if (player.xp >= 10 && act == 1) {
+            //increment act and place;
+            act = 2;
+            place = 1;
+            //story
+            Story.printFirstActOutro();
+            //let player level up
+            player.chooseTrait();
+            //story
+            Story.printSecondActIntro();
+            //assign new values to enemy
+            enemies[0] = "Evil Mercenary";
+            enemies[1] = "Goblin";
+            enemies[2] = "Wolves Pack";
+            enemies[3] = "Henchman of the Evil Emperor";
+            enemies[4] = "Scary Stranger";
+            //assign encounter values
+            encounters[0] = "Battle";
+            encounters[1] = "Battle";
+            encounters[2] = "Battle";
+            encounters[3] = "Rest";
+            encounters[4] = "Shop";
+        } else if (player.xp >= 50 && act == 2) {
+            //increment act and place
+            act = 3;
+            place = 2;
+            Story.printSecondActOutro();
+            //level up
+            player.chooseTrait();
+            //Story
+            Story.printThirdActIntro();
+            //assign new values to enemy
+            enemies[0] = "Evil Mercenary";
+            enemies[1] = "Evil Mercenary";
+            enemies[2] = "Henchman of the Evil Emperor";
+            enemies[3] = "Henchman of the Evil Emperor";
+            enemies[4] = "Henchman of the Evil Emperor";
+            //assign encounter values
+            encounters[0] = "Battle";
+            encounters[1] = "Battle";
+            encounters[2] = "Battle";
+            encounters[3] = "Battle";
+            encounters[4] = "Shop";
+            //fully heal player
+            player.hp = player.maxHp;
+        } else if (player.xp >= 100 && act == 30) {
+            //increment act and place
+            act = 4;
+            place = 3;
+            //story
+            Story.printThirdActOutro();
+            //level up
+            player.chooseTrait();
+            //story
+            Story.printFourthActIntro();
+            //fully heal the player
+            player.hp = player.maxHp;
+            //calling last battle
+            //finalbattle
+        }
+    }
+
+    public static void randomEncounter() {
+        //rand num between 0 and length of encounters array
+        int encounter = (int) (Math.random() * encounters.length);
+        //calling methods
+        if (encounters[encounter].equals("Battle")) {
+            randomBattle();
+        } else {
+            //shop()
+        }
+    }
+
+    //to continue journey
+    public static void continueJourney() {
+        //check if act must be increased
+        checkAct();
+        //check if game is in last act
+        if (act != 4)
+            randomEncounter();
+    }
+
+    public static void printMenu() {
+        clearConsole();
+        printHeading(places[place]);
+        System.out.println("Choose an action:");
+        printSeperator(20);
+        System.out.println("(1) Continue on your Journey ");
+        System.out.println("(2) Character Information");
+        System.out.println("(3) Exit Game");
+    }
+    //method gameLoop
+
+    public static void startGame() {
+        boolean nameSet = false;
+        String name;
+        //print title screen
+        clearConsole();
+        printSeperator(40);
+        printSeperator(30);
+        System.out.println(" AGE OF EVIL EMPEROR ");
+        printSeperator(30);
+        printSeperator(40);
+        anythingToContinue();
+
+        do {
+            clearConsole();
+            printHeading("Whats's your name ?");
+            name = scanner.next();
+            clearConsole();
+            printHeading("Your name is" + name + "./Is that correct?");
+            System.out.println("(1) Yes!");
+            System.out.println("(2) No,I want to change my name.");
+            int input = readInt("->", 2);
+            if (input == 1)
+                nameSet = true;
+        } while (!nameSet);
+        //creating player object with name
+        player = new Player(name);
+
+        //print first story intro
+        Story.printFirstActIntro();
+
+        //set Running to true for game loop to continue
+        isRunning = true;
+
+        //start main game loop
+        gameLoop();
+    }
+
+    public static void gameLoop() {
+        while (isRunning) {
+            printMenu();
+            int input = readInt("-> ", 3);
+            if (input == 1)
+                continueJourney();
+            else if (input == 2)
+                characterInfo();
+            else
+                isRunning = false;
+        }
+    }
+
+    public static void shop() {
+        clearConsole();
+        printHeading("You meet a mysterious stranger.\nHe offers you something!");
+        int price = (int) (Math.random() * (10 + player.pots * 3) + 10 + player.pots);
+        System.out.println("- Magic Potion: " + price + "gold.");
+        int input = readInt("-> ", 2);
+        //check if player wants to buy
+        if(input==1){
+            clearConsole();
+            //check if player has enough gold
+            if (player.gold >= price) {
+                printHeading("You bougth a magical potion for " + price + "gold.");
+                player.pots++;
+                player.gold -= price;
+            } else
+                printHeading("You don't have enough gold to buy this...");
+            anythingToContinue();
          }
-        public static void characterInfo(){
-            clearConsole();
-            printHeading("CHARACTER INFO");
-            System.out.println("player.name" + "\t HP " + player.hp + "/" + player.maxHp);
-                    printSeperator(20);
-            System.out.println("Experience: "+player.xp);
-            printSeperator(20);
-
-            System.out.println("Number of Potions"+ player.pots);
-            printSeperator(20);
-
-
-            //Printing chosen traits
-            if(player.numAtkUpgrades > 0){
-                System.out.println("Offensive trait: "+player.atkUpgrades[player.numAtkUpgrades-1]);
-                printSeperator(20);
-            }
-            if(player.numDefUpgrades > 0){
-                System.out.println("Defensive trait: "+player.defUpgrades[player.numDefUpgrades - 1]);
-            }
-            anythingToContinue();
-        }
-
-        //change game's values based on player xp
-        public static void checkAct() {
-            //change acts based on xp
-            if (player.xp >= 10 && act == 1) {
-                //increment act and place;
-                act = 2;
-                place = 1;
-                //story
-                Story.printFirstActOutro();
-                //let player level up
-                player.chooseTrait();
-                //story
-                Story.printSecondActIntro();
-                //assign new values to enemy
-                enemies[0]="Evil Mercenary";
-                enemies[1]="Goblin";
-                enemies[2]="Wolves Pack";
-                enemies[3]="Henchman of the Evil Emperor";
-                enemies[4]="Scary Stranger";
-                //assign encounter values
-                encounters[0] = "Battle";
-                encounters[1] = "Battle";
-                encounters[2] = "Battle";
-                encounters[3] = "Rest";
-                encounters[4] = "Shop";
-            } else if (player.xp >= 50 && act == 2) {
-                //increment act and place
-                act = 3;
-                place = 2;
-                Story.printSecondActOutro();
-                //level up
-                player.chooseTrait();
-                //Story
-                Story.printThirdActIntro();
-                //assign new values to enemy
-                enemies[0]="Evil Mercenary";
-                enemies[1]="Evil Mercenary";
-                enemies[2]="Henchman of the Evil Emperor";
-                enemies[3]="Henchman of the Evil Emperor";
-                enemies[4]="Henchman of the Evil Emperor";
-                //assign encounter values
-                encounters[0] = "Battle";
-                encounters[1] = "Battle";
-                encounters[2] = "Battle";
-                encounters[3] = "Battle";
-                encounters[4] = "Shop";
-                //fully heal player
-                player.hp=player.maxHp;
-            } else if (player.xp >= 100 && act == 30) {
-                //increment act and place
-                act = 4;
-                place = 3;
-                //story
-                Story.printThirdActOutro();
-                //level up
-                player.chooseTrait();
-                //story
-                Story.printFourthActIntro();
-                //fully heal the player
-                player.hp=player.maxHp;
-                //calling last battle
-                //finalbattle
-            }
-        }
-
-        public static void randomEncounter() {
-            //rand num between 0 and length of encounters array
-            int encounter = (int) (Math.random() * encounters.length);
-            //calling methods
-            if (encounters[encounter].equals("Battle")) {
-                randomBattle();
-            } else {
-                //shop()
-            }
-        }
-        //to continue journey
-        public static void continueJourney(){
-            //check if act must be increased
-            checkAct();
-            //check if game is in last act
-            if(act !=4)
-                randomEncounter();
-        }
-
-        public static void printMenu(){
-            clearConsole();
-            printHeading(places[place]);
-            System.out.println("Choose an action:");
-            printSeperator(20);
-            System.out.println("(1) Continue on your Journey ");
-            System.out.println("(2) Character Information");
-            System.out.println("(3) Exit Game");
-        }
-        //method gameLoop
-
-        public static void startGame(){
-            boolean nameSet=false;
-            String name;
-            //print title screen
-            clearConsole();
-            printSeperator(40);
-            printSeperator(30);
-            System.out.println(" AGE OF EVIL EMPEROR ");
-            printSeperator(30);
-            printSeperator(40);
-            anythingToContinue();
-
-            do{
-                clearConsole();
-                printHeading("Whats's your name ?");
-                name=scanner.next();
-                clearConsole();
-                printHeading("Your name is" + name + "./Is that correct?");
-                System.out.println("(1) Yes!");
-                System.out.println("(2) No,I want to change my name.");
-                int input=readInt("->",2);
-                if(input==1)
-                    nameSet=true;
-            }while(!nameSet);
-            //creating player object with name
-            player=new Player(name);
-
-            //print first story intro
-            Story.printFirstActIntro();
-
-            //set Running to true for game loop to continue
-            isRunning = true;
-
-            //start main game loop
-            gameLoop();
-        }
-
-        public static void gameLoop(){
-            while (isRunning) {
-                printMenu();
-                int input = readInt("-> ", 3);
-                if(input == 1)
-                    continueJourney();
-                else if(input == 2)
-                    characterInfo();
-                else
-                    isRunning = false;
-            }
-        }
+    }
         //taking a rest
         public static void takeRest(){
             clearConsole();
@@ -319,7 +343,7 @@ public class GameLogic {
                             }else {
                                 printHeading("You didn't manage to escape.");
                                 //calculate damage the player takes
-                                int dmgTook = enemy.attack();
+                                dmgTook = enemy.attack();
                                 System.out.println("In your hurry you took 0 " + dmgTook + "damage!");
                                 anythingToContinue();
                                 //check if player's still alive
