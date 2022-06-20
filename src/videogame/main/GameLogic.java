@@ -177,7 +177,7 @@ public class GameLogic {
             //print title screen
             clearConsole();
             printSeperator(40);
-            printSeperator(30;
+            printSeperator(30);
             System.out.println(" AGE OF EVIL EMPEROR ");
             printSeperator(30);
             printSeperator(40);
@@ -188,7 +188,7 @@ public class GameLogic {
                 printHeading("Whats's your name ?");
                 name=scanner.next();
                 clearConsole();
-                printHeading("Your name is "+name"./Is that correct?");
+                printHeading("Your name is" + name + "./Is that correct?");
                 System.out.println("(1) Yes!");
                 System.out.println("(2) No,I want to change my name.");
                 int input=readInt("->",2);
@@ -316,22 +316,22 @@ public class GameLogic {
                                 printHeading("You ran away from the " + enemy.name + "!");
                                 anythingToContinue();
                                 break;
-                            }else{
+                            }else {
                                 printHeading("You didn't manage to escape.");
                                 //calculate damage the player takes
                                 int dmgTook = enemy.attack();
                                 System.out.println("In your hurry you took 0 " + dmgTook + "damage!");
                                 anythingToContinue();
                                 //check if player's still alive
-                                if(player.hp <= 0){
+                                if (player.hp <= 0)
                                     playerDied();
-                                }
+                            }
 
                             }else{
                                 printHeading("YOU CANNOT ESCAPE THE EVIL EMPEROR!!");
                                 anythingToContinue();
                             }
-                        }
+
 
                     }
                 }
@@ -347,4 +347,3 @@ public class GameLogic {
     }
 
 
-}
