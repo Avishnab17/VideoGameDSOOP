@@ -202,7 +202,7 @@ public class GameLogic {
             Story.printFirstActIntro();
 
             //set Running to true for game loop to continue
-            isRunnining = true;
+            isRunning = true;
 
             //start main game loop
             gameLoop();
