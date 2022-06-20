@@ -56,12 +56,12 @@ public class GameLogic {
         public static void characterInfo(){
             clearConsole();
             printHeading("CHARACTER INFO");
-            System.out.println("player.name +"\tHP"+player.hp+"/"+player.maxHp);
+            System.out.println("player.name" + "\t HP " + player.hp + "/" + player.maxHp);
                     printSeperator(20);
             System.out.println("Experience: "+player.xp);
             printSeperator(20);
 
-            System.out.println("Number of Potions"+ player.pots);
+            System.out.println("Number of Potions"+ player.num);
             printSeperator(20);
 
 
@@ -71,7 +71,7 @@ public class GameLogic {
                 printSeperator(20);
             }
             if(player.numDefUpgrades > 0){
-                System.out.println("Defensive trait: "+player.defUpgrade[player.numDefUpgrades - 1]);
+                System.out.println("Defensive trait: "+player.defUpgrades[player.numDefUpgrades - 1]);
             }
             anythingToContinue();
         }
@@ -92,7 +92,7 @@ public class GameLogic {
                 //assign new values to enemy
                 enemies[0]="Evil Mercenary";
                 enemies[1]="Goblin";
-                enemies[2]="Wolve Pack";
+                enemies[2]="Wolves Pack";
                 enemies[3]="Henchman of the Evil Emperor";
                 enemies[4]="Scary Stranger";
                 //assign encounter values
@@ -146,7 +146,7 @@ public class GameLogic {
             int encounter = (int) (Math.random() * encounters.length);
             //calling methods
             if (encounters[encounter].equals("Battle")) {
-                //randomBattle();
+                randomBattle();
             } else {
                 //shop()
             }
@@ -177,7 +177,7 @@ public class GameLogic {
             //print title screen
             clearConsole();
             printSeperator(40);
-            printSeperator(30;
+            printSeperator(30);
             System.out.println(" AGE OF EVIL EMPEROR ");
             printSeperator(30);
             printSeperator(40);
@@ -188,7 +188,7 @@ public class GameLogic {
                 printHeading("Whats's your name ?");
                 name=scanner.next();
                 clearConsole();
-                printHeading("Your name is "+name"./Is that correct?");
+                printHeading("Your name is" + name + "./Is that correct?");
                 System.out.println("(1) Yes!");
                 System.out.println("(2) No,I want to change my name.");
                 int input=readInt("->",2);
@@ -202,7 +202,7 @@ public class GameLogic {
             Story.printFirstActIntro();
 
             //set Running to true for game loop to continue
-            isRunnining = true;
+            isRunning = true;
 
             //start main game loop
             gameLoop();
@@ -250,7 +250,7 @@ public class GameLogic {
         public static void randomBattle(){
             clearConsole();
             printHeading("You encountered an evil minded creature. You'll have to fight it!");
-            anythingToContine();//lets the game pause until the player wants it to continue
+            anythingToContinue();//lets the game pause until the player wants it to continue
             //create new enemy with random name and passing it as parameter to the main method
             battle(new Enemy(enemies[(int)(Math.random()*enemies.length)],player.xp));
         }
@@ -316,22 +316,22 @@ public class GameLogic {
                                 printHeading("You ran away from the " + enemy.name + "!");
                                 anythingToContinue();
                                 break;
-                            }else{
+                            }else {
                                 printHeading("You didn't manage to escape.");
                                 //calculate damage the player takes
                                 int dmgTook = enemy.attack();
                                 System.out.println("In your hurry you took 0 " + dmgTook + "damage!");
                                 anythingToContinue();
                                 //check if player's still alive
-                                if(player.hp <= 0){
+                                if (player.hp <= 0)
                                     playerDied();
-                                }
+                            }
 
                             }else{
                                 printHeading("YOU CANNOT ESCAPE THE EVIL EMPEROR!!");
                                 anythingToContinue();
                             }
-                        }
+
 
                     }
                 }
@@ -347,4 +347,3 @@ public class GameLogic {
     }
 
 
-}
