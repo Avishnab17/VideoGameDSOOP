@@ -146,7 +146,7 @@ public class GameLogic {
             int encounter = (int) (Math.random() * encounters.length);
             //calling methods
             if (encounters[encounter].equals("Battle")) {
-                //randomBattle();
+                randomBattle();
             } else {
                 //shop()
             }
