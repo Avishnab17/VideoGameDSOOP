@@ -61,7 +61,7 @@ public class GameLogic {
             System.out.println("Experience: "+player.xp);
             printSeperator(20);
 
-            System.out.println("Number of Potions"+ player.num);
+            System.out.println("Number of Potions"+ player.pots);
             printSeperator(20);
 
 
