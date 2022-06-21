@@ -61,7 +61,7 @@ public class GameLogic {
         printHeading("CHARACTER INFO");
         System.out.println("player.name" + "\tHP " + player.hp + "/" + player.maxHp);
         printSeperator(20);
-        System.out.println("Experience: " + player.xp+"\tGold: "+player.gold);
+        System.out.println("Experience: " + player.xp + "\tGold: "+ player.gold);
         printSeperator(20);
 
         System.out.println("Number of Potions" + player.pots);
@@ -339,8 +339,8 @@ public class GameLogic {
                             break;
                         }
                             //random drops
-                            boolean addRest = (Math.random() * 5 + 1 <= 2.25);
-                            int goldEarned = (int) (Math.random() * enemy.xp);
+                            boolean addRest = (Math.random()*5 + 1 <= 2.25);
+                            int goldEarned = (int) (Math.random()*enemy.xp);
                             if (addRest) {
                                 player.restsLeft++;
                                 System.out.println("You earned the chance to get an additional rest!");
