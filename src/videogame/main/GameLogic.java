@@ -309,7 +309,7 @@ public class GameLogic {
                     //check that dmg and dmgTook isn't negative
                     if (dmgTook < 0) {
                         //add some dmg if player defends very well
-                        dmg -= dmgTook / 2;
+                        dmg -= dmgTook/2;
                         dmgTook = 0;
                     }
                     if (dmg < 0) {
