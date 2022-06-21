@@ -269,7 +269,7 @@ public class GameLogic {
                     //player actually takes rest
                     clearConsole();
                     if (player.hp < player.maxHp) {
-                        int hpRestored = (int) (Math.random() * (player.xp / 4 + 1) + 10);
+                        int hpRestored = (int) (Math.random() * (player.xp /4 + 1) + 10);
                         player.hp += hpRestored;
                         if (player.hp > player.maxHp)
                              player.hp = player.maxHp;
@@ -378,7 +378,7 @@ public class GameLogic {
                         if (act != 4) {
                             clearConsole();
                             //chance of 35% to escape
-                            if (Math.random() * 10 + 1 <= 3.5) {
+                            if (Math.random()*10 + 1 <= 3.5) {
                                 printHeading("You ran away from the " + enemy.name + "!");
                                 anythingToContinue();
                                 break;
