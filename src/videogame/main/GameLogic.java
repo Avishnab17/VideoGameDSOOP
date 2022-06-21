@@ -192,7 +192,7 @@ public class GameLogic {
 
         do {
             clearConsole();
-            printHeading("Whats's your name ?");
+            printHeading("What's your name ?");
             name = scanner.next();
             clearConsole();
             printHeading("Your name is" + name + "./Is that correct?");
@@ -350,7 +350,7 @@ public class GameLogic {
                             anythingToContinue();
                             break;
                         }
-                    } else if (input == 2) {
+                    } else if (input==2) {
                         //use potion
                         clearConsole();
                         if (player.pots > 0 && player.hp < player.maxHp) {
