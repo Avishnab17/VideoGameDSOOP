@@ -268,8 +268,8 @@ public class GameLogic {
                     if (player.hp < player.maxHp) {
                         int hpRestored = (int) (Math.random() * (player.xp / 4 + 1) + 10);
                         player.hp += hpRestored;
-                        if (player.hp > player.maxHp) {
-                            player.hp = player.maxHp;
+                        if (player.hp > player.maxHp)
+                             player.hp = player.maxHp;
                             System.out.println("You took a rest and restored up to " + hpRestored + "health.");
                             System.out.println("You're now at " + player.hp + "/" + player.maxHp + "health.");
                             player.restsLeft--;
@@ -278,7 +278,6 @@ public class GameLogic {
                         System.out.println("You're now at " + player.hp + "/" + player.maxHp + "health.");
                     anythingToContinue();
                 }
-            }
         }
 
         //create a random battle with a random enemy
