@@ -40,7 +40,7 @@ public class GameLogic {
     //print separator
     public static void printSeperator(int n) {
         for (int i = 0; i < n; i++)
-            System.out.printf("-");
+            System.out.print("-");
         System.out.println();
     }
 
@@ -309,7 +309,6 @@ public class GameLogic {
                         //add some dmg if player defends very well
                         dmg -= dmgTook / 2;
                         dmgTook = 0;
-
                     }
                     if (dmg < 0) {
                         dmg = 0;
@@ -327,7 +326,6 @@ public class GameLogic {
                         if (player.hp <= 0) {
                             playerDied();//method to end the game
                             break;
-
                         } else if (enemy.hp <= 0) {
                             //tell the player he won
                             clearConsole();
@@ -335,6 +333,9 @@ public class GameLogic {
                             //increase player xp
                             player.xp += enemy.xp;
                             System.out.println("You earned " + enemy.xp + "XP!");
+                            anythingToContinue();
+                            break;
+                        }
                             //random drops
                             boolean addRest = (Math.random() * 5 + 1 <= 2.25);
                             int goldEarned = (int) (Math.random() * enemy.xp);
@@ -348,7 +349,6 @@ public class GameLogic {
                             }
                             anythingToContinue();
                             break;
-
                         }
                     } else if (input == 2) {
                         //use potion
@@ -365,7 +365,6 @@ public class GameLogic {
                                 printHeading("You drank a magic potion. It restored your health back to " + player.maxHp);
                                 anythingToContinue();
                             }
-
                         } else {
                             //player CANNOT take a potion
                             printHeading("You don't have any potions or you're at full health.");
@@ -384,7 +383,7 @@ public class GameLogic {
                             } else {
                                 printHeading("You didn't manage to escape.");
                                 //calculate damage the player takes
-                                dmgTook = enemy.attack();
+                                int dmgTook = enemy.attack();
                                 System.out.println("In your hurry you took 0 " + dmgTook + "damage!");
                                 anythingToContinue();
                                 //check if player's still alive
@@ -401,7 +400,6 @@ public class GameLogic {
                     }
                 }
             }
-        }
 
         public static void playerDied(){
             clearConsole();
