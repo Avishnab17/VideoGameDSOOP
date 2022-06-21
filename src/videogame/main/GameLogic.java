@@ -61,7 +61,7 @@ public class GameLogic {
         printHeading("CHARACTER INFO");
         System.out.println("player.name" + "\t HP " + player.hp + "/" + player.maxHp);
         printSeperator(20);
-        System.out.println("Experience: " + player.xp);
+        System.out.println("Experience: " + player.xp+"\tGold: "+player.gold);
         printSeperator(20);
 
         System.out.println("Number of Potions" + player.pots);
@@ -82,7 +82,8 @@ public class GameLogic {
     //change game's values based on player xp
     public static void checkAct() {
         //change acts based on xp
-        if (player.xp >= 10 && act == 1) {
+        if (player.xp >= 10 && act == 1)
+        {
             //increment act and place;
             act = 2;
             place = 1;
@@ -140,7 +141,7 @@ public class GameLogic {
             //fully heal the player
             player.hp = player.maxHp;
             //calling last battle
-            //finalbattle
+            finalBattle();
         }
     }
 
@@ -150,8 +151,10 @@ public class GameLogic {
         //calling methods
         if (encounters[encounter].equals("Battle")) {
             randomBattle();
-        } else {
-            //shop()
+        } else if(encounters[encounter].equals("Rest")) {
+            takeRest();
+        }else{
+            shop();
         }
     }
 
@@ -212,6 +215,14 @@ public class GameLogic {
         gameLoop();
     }
 
+    //the final(last) battle of the entire game
+    public static void finalBattle(){
+        //creating the evil emperor and letting the player fight against him
+        battle(new Enemy("THE EVIL EMPEROR", 300));
+        //printing the proper ending
+        Story.printEnd(player);
+        isRunning=false;
+    }
     public static void gameLoop() {
         while (isRunning) {
             printMenu();
@@ -396,7 +407,6 @@ public class GameLogic {
             clearConsole();
             printHeading("You died...");
             printHeading("You earned " + player.xp + "XP on your journey. Try to earn more next time!");
-
         }
 
     }
