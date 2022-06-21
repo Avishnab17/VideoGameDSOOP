@@ -140,7 +140,7 @@ public class GameLogic {
             //fully heal the player
             player.hp = player.maxHp;
             //calling last battle
-            //finalbattle
+            finalBattle();
         }
     }
 
@@ -150,8 +150,10 @@ public class GameLogic {
         //calling methods
         if (encounters[encounter].equals("Battle")) {
             randomBattle();
-        } else {
-            //shop()
+        } else if(encounters[encounter].equals("Rest")) {
+            takeRest();
+        }else{
+            shop();
         }
     }
 
@@ -212,6 +214,14 @@ public class GameLogic {
         gameLoop();
     }
 
+    //the final(last) battle of the entire game
+    public static void finalBattle(){
+        //creating the evil emperor and letting the player fight against him
+        battle(new Enemy("THE EVIL EMPEROR", 300));
+        //printing the proper ending
+        Story.printEnd(player);
+        isRunning=false;
+    }
     public static void gameLoop() {
         while (isRunning) {
             printMenu();
