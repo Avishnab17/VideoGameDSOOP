@@ -195,7 +195,7 @@ public class GameLogic {
             printHeading("Whats's your name ?");
             name = scanner.next();
             clearConsole();
-            printHeading("Your name is" + name + "./Is that correct?");
+            printHeading("Your name is " + name + "./Is that correct?");
             System.out.println("(1) Yes!");
             System.out.println("(2) No,I want to change my name.");
             int input = readInt("->", 2);
