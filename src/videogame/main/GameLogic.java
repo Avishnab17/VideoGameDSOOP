@@ -12,7 +12,7 @@ public class GameLogic {
     //enemy names
     public static String[] enemies = {"Ogre", "Ogre", "Goblin", "Goblin", "Stone Elemental"};
 
-    public static int place = 0, act;
+    public static int place = 0, act = 1;
     //story elements
     public static String[] places = {"Everlasting Mountains", "Haunted Landlines", "Castle of the Evil Emperor", "Throne Room"};
 
@@ -99,6 +99,85 @@ public class GameLogic {
         gameLoop();
     }
 
+    //change game's values based on player xp
+    public static void checkAct() {
+        //change acts based on xp
+        if (player.xp >= 10 && act == 1) {
+            //increment act and place;
+            act = 2;
+            place = 1;
+            //story
+            Story.printFirstActOutro();
+            //let player level up
+            player.chooseTrait();
+            //story
+            Story.printSecondActIntro();
+            //assign new values to enemy
+            enemies[0] = "Evil Mercenary";
+            enemies[1] = "Goblin";
+            enemies[2] = "Wolves Pack";
+            enemies[3] = "Henchman of the Evil Emperor";
+            enemies[4] = "Scary Stranger";
+            //assign encounter values
+            encounters[0] = "Battle";
+            encounters[1] = "Battle";
+            encounters[2] = "Battle";
+            encounters[3] = "Rest";
+            encounters[4] = "Shop";
+        } else if (player.xp >= 50 && act == 2){
+            //increment act and place
+            act = 3;
+            place = 2;
+            Story.printSecondActOutro();
+            //level up
+            player.chooseTrait();
+            //Story
+            Story.printThirdActIntro();
+            //assign new values to enemy
+            enemies[0] = "Evil Mercenary";
+            enemies[1] = "Evil Mercenary";
+            enemies[2] = "Henchman of the Evil Emperor";
+            enemies[3] = "Henchman of the Evil Emperor";
+            enemies[4] = "Henchman of the Evil Emperor";
+            //assign encounter values
+            encounters[0] = "Battle";
+            encounters[1] = "Battle";
+            encounters[2] = "Battle";
+            encounters[3] = "Battle";
+            encounters[4] = "Shop";
+            //fully heal player
+            player.hp = player.maxHp;
+        }else if (player.xp >= 100 && act == 3) {
+            //increment act and place
+            act = 4;
+            place = 3;
+            //story
+            Story.printThirdActOutro();
+            //level up
+            player.chooseTrait();
+            //story
+            Story.printFourthActIntro();
+            //fully heal the player
+            player.hp = player.maxHp;
+            //calling last battle
+            finalBattle();
+        }
+    }
+
+    public static void randomEncounter() {
+        //rand num between 0 and length of encounters array
+        int encounter = (int) (Math.random() * encounters.length);
+        //calling methods
+        if (encounters[encounter].equals("Battle")) {
+            randomBattle();
+        } else if (encounters[encounter].equals("Rest")) {
+            takeRest();
+        } else {
+            shop();
+        }
+    }
+
+
     //method to continue journey
     public static void continueJourney() {
         //check if act must be increased
@@ -152,85 +231,8 @@ public class GameLogic {
 
 
 
-    //change game's values based on player xp
-    public static void checkAct() {
-        //change acts based on xp
-        if (player.xp >= 10 && act == 1) {
-            //increment act and place;
-            act = 2;
-            place = 1;
-            //story
-            Story.printFirstActOutro();
-            //let player level up
-            player.chooseTrait();
-            //story
-            Story.printSecondActIntro();
-            //assign new values to enemy
-            enemies[0] = "Evil Mercenary";
-            enemies[1] = "Goblin";
-            enemies[2] = "Wolves Pack";
-            enemies[3] = "Henchman of the Evil Emperor";
-            enemies[4] = "Scary Stranger";
-            //assign encounter values
-            encounters[0] = "Battle";
-            encounters[1] = "Battle";
-            encounters[2] = "Battle";
-            encounters[3] = "Rest";
-            encounters[4] = "Shop";
-        } else if (player.xp >= 50 && act == 2) {
-            //increment act and place
-            act = 3;
-            place = 2;
-            Story.printSecondActOutro();
-            //level up
-            player.chooseTrait();
-            //Story
-            Story.printThirdActIntro();
-            //assign new values to enemy
-            enemies[0] = "Evil Mercenary";
-            enemies[1] = "Evil Mercenary";
-            enemies[2] = "Henchman of the Evil Emperor";
-            enemies[3] = "Henchman of the Evil Emperor";
-            enemies[4] = "Henchman of the Evil Emperor";
-            //assign encounter values
-            encounters[0] = "Battle";
-            encounters[1] = "Battle";
-            encounters[2] = "Battle";
-            encounters[3] = "Battle";
-            encounters[4] = "Shop";
-            //fully heal player
-            player.hp = player.maxHp;
-        } else if (player.xp >= 100 && act == 30) {
-            //increment act and place
-            act = 4;
-            place = 3;
-            //story
-            Story.printThirdActOutro();
-            //level up
-            player.chooseTrait();
-            //story
-            Story.printFourthActIntro();
-            //fully heal the player
-            player.hp = player.maxHp;
-            //calling last battle
-            finalBattle();
-        }
-    }
 
-    public static void randomEncounter() {
-        //rand num between 0 and length of encounters array
-        int encounter = (int) (Math.random() * encounters.length);
-        //calling methods
-        if (encounters[encounter].equals("Battle")) {
-            randomBattle();
-        } else if (encounters[encounter].equals("Rest")) {
-            takeRest();
-        } else {
-            shop();
-        }
-    }
 
-    //to continue journey
 
 
     //method gameLoop
