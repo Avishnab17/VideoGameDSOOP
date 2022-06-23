@@ -182,7 +182,7 @@ public class GameLogic {
     public static void characterInfo(){
         clearConsole();
         printHeading("CHARACTER INFO");
-        System.out.println("player.name" + "\tHP " + player.hp + "/" + player.maxHp);
+        System.out.println(player.name + "\tHP " + player.hp + "/" + player.maxHp);
         printSeperator(20);
         System.out.println("Experience: " + player.xp + "\tGold: " + player.gold);
         printSeperator(20);
@@ -243,7 +243,7 @@ public class GameLogic {
     public static void shop() {
         clearConsole();
         printHeading("You meet a mysterious stranger.\nHe offers you something!");
-        int price = (int) (Math.random() * (10 + player.pots * 3) + 10 + player.pots);
+        int price = (int) (Math.random()* (10 + player.pots*3) + 10 + player.pots);
         System.out.println("- Magic Potion: " + price + " gold.");
         printSeperator(20);
         //ask player if he wants to buy one
@@ -254,7 +254,7 @@ public class GameLogic {
             clearConsole();
             //check if player has enough gold
             if (player.gold >= price) {
-                printHeading("You bought a magical potion for " + price + "gold.");
+                printHeading("You bought a magical potion for " + price + " gold.");
                 player.pots++;
                 player.gold -= price;
             } else
@@ -274,12 +274,12 @@ public class GameLogic {
                 //player actually takes rest
                 clearConsole();
                 if (player.hp < player.maxHp) {
-                    int hpRestored = (int) (Math.random() * (player.xp / 4 + 1) + 10);
+                    int hpRestored = (int) (Math.random() * (player.xp/4 + 1) + 10);
                     player.hp += hpRestored;
                     if (player.hp > player.maxHp)
                         player.hp = player.maxHp;
-                    System.out.println("You took a rest and restored up to " + hpRestored + "health.");
-                    System.out.println("You're now at " + player.hp + "/" + player.maxHp + "health.");
+                    System.out.println("You took a rest and restored up to " + hpRestored + " health.");
+                    System.out.println("You're now at " + player.hp + "/" + player.maxHp + " health.");
                     player.restsLeft--;
                 }
             } else
@@ -343,15 +343,15 @@ public class GameLogic {
                     System.out.println("You earned " + enemy.xp + "XP!");
 
                     //random drops
-                    boolean addRest = (Math.random() * 5 + 1 <= 2.25);
-                    int goldEarned = (int) (Math.random() * enemy.xp);
+                    boolean addRest = (Math.random()* 5 + 1 <= 2.25);
+                    int goldEarned = (int) (Math.random()*enemy.xp);
                     if (addRest) {
                         player.restsLeft++;
                         System.out.println("You earned the chance to get an additional rest!");
                     }
                     if (goldEarned > 0) {
                         player.gold += goldEarned;
-                        System.out.println("You collect " + goldEarned + "gold from the" + enemy.name + "'s corpse");
+                        System.out.println("You collect " + goldEarned + " gold from the " + enemy.name + "'s corpse");
                     }
                     anythingToContinue();
                     break;
