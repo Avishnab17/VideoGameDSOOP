@@ -19,15 +19,16 @@ public class GameLogic {
     //method readInt
     public static int readInt(String prompt, int userChoices) {
         int input;
+
         do {
             System.out.println(prompt);
-            try {
-                input = Integer.parseInt(scanner.next());
-            } catch (Exception e) {
+            try{
+                input = Integer.parseInt(scanner.next()); //next reads whatever user inputs,it will be in string format, so we use Integer.parseInt to convert it to integer
+            }catch(Exception e){  //if any error occurs, we set our input to -1 and print the message.
                 input = -1;
                 System.out.println("Please enter an integer!");
             }
-        } while (input < 1 || input > userChoices);
+        }while(input < 1 || input > userChoices); //to get user input, as long as input is not between 1 and number of choices
         return input;
     }
 
@@ -44,29 +45,66 @@ public class GameLogic {
         System.out.println();
     }
 
+    //method to printf heading
     public static void printHeading(String title) {
         printSeperator(30);
         System.out.println(title);
         printSeperator(30);
     }
 
-    //method to stop the game until user enters anything
+    //method to stop the game until user enters anything, so that user can get time to read the console
     public static void anythingToContinue() {
-        System.out.println("\nEnter anything to continue...");
+        System.out.println("\nEnter anything to continue : ");
         scanner.next();
     }
 
-    public static void characterInfo() {
+    public static void startGame() {
+        boolean nameSet=false;
+        String name;
+        //print title screen
+        clearConsole();
+        printSeperator(40);
+        printSeperator(30);
+        System.out.println(" AGE OF EVIL EMPEROR ");
+        System.out.println("HAVE FUN");
+        printSeperator(30);
+        printSeperator(40);
+        anythingToContinue();
+        // Get choice to change his name
+        do {
+            clearConsole();
+            printHeading("What's your name ?");
+            name = scanner.next();
+            clearConsole();
+            printHeading("Your name is " + name + ".\nIs that correct?");
+            System.out.println("(1) Yes!");
+            System.out.println("(2) No,I want to change my name.");
+            int input = readInt("->", 2);
+            if (input == 1)
+                nameSet = true;
+        }while(!nameSet);
+        //creating player object with name
+        player = new Player(name);
+
+        //print first story intro
+        Story.printFirstActIntro();
+
+        //set Running to true for game loop to continue
+        isRunning = true;
+
+        //start main game loop
+        gameLoop();
+    }
+
+    public static void characterInfo(){
         clearConsole();
         printHeading("CHARACTER INFO");
         System.out.println("player.name" + "\tHP " + player.hp + "/" + player.maxHp);
         printSeperator(20);
-        System.out.println("Experience: " + player.xp + "\tGold: "+ player.gold);
+        System.out.println("Experience: " + player.xp + "\tGold: " + player.gold);
         printSeperator(20);
-
         System.out.println("Number of Potions" + player.pots);
         printSeperator(20);
-
 
         //Printing chosen traits
         if (player.numAtkUpgrades > 0) {
@@ -82,8 +120,7 @@ public class GameLogic {
     //change game's values based on player xp
     public static void checkAct() {
         //change acts based on xp
-        if (player.xp >= 10 && act == 1)
-        {
+        if (player.xp >= 10 && act == 1) {
             //increment act and place;
             act = 2;
             place = 1;
@@ -147,13 +184,13 @@ public class GameLogic {
 
     public static void randomEncounter() {
         //rand num between 0 and length of encounters array
-        int encounter = (int) (Math.random()* encounters.length);
+        int encounter = (int) (Math.random() * encounters.length);
         //calling methods
         if (encounters[encounter].equals("Battle")) {
             randomBattle();
-        } else if(encounters[encounter].equals("Rest")) {
+        } else if (encounters[encounter].equals("Rest")) {
             takeRest();
-        }else{
+        } else {
             shop();
         }
     }
@@ -166,7 +203,6 @@ public class GameLogic {
         if (act != 4)
             randomEncounter();
     }
-
     public static void printMenu() {
         clearConsole();
         printHeading(places[place]);
@@ -178,51 +214,23 @@ public class GameLogic {
     }
     //method gameLoop
 
-    public static void startGame() {
-        boolean nameSet = false;
-        String name;
-        //print title screen
-        clearConsole();
-        printSeperator(40);
-        printSeperator(30);
-        System.out.println(" AGE OF EVIL EMPEROR ");
-        printSeperator(30);
-        printSeperator(40);
-        anythingToContinue();
-
-        do {
-            clearConsole();
-            printHeading("What's your name ?");
-            name = scanner.next();
-            clearConsole();
-            printHeading("Your name is " + name + ".\nIs that correct?");
-            System.out.println("(1) Yes!");
-            System.out.println("(2) No,I want to change my name.");
-            int input = readInt("->", 2);
-            if (input == 1)
-                nameSet = true;
-        } while (!nameSet);
-        //creating player object with name
-        player = new Player(name);
-
-        //print first story intro
-        Story.printFirstActIntro();
-
-        //set Running to true for game loop to continue
-        isRunning = true;
-
-        //start main game loop
-        gameLoop();
-    }
 
     //the final(last) battle of the entire game
-    public static void finalBattle(){
+    public static void finalBattle() {
         //creating the evil emperor and letting the player fight against him
         battle(new Enemy("THE EVIL EMPEROR", 300));
         //printing the proper ending
         Story.printEnd(player);
-        isRunning=false;
+        isRunning = false;
     }
+
+    public static void playerDied() {
+        clearConsole();
+        printHeading("You died...");
+        printHeading("You earned " + player.xp + "XP on your journey. Try to earn more next time!");
+    }
+
+
     public static void gameLoop() {
         while (isRunning) {
             printMenu();
@@ -236,179 +244,171 @@ public class GameLogic {
         }
     }
 
-    public static void shop(){
+    public static void shop() {
         clearConsole();
         printHeading("You meet a mysterious stranger.\nHe offers you something!");
-        int price = (int) (Math.random()* (10 + player.pots*3) + 10 + player.pots);
+        int price = (int) (Math.random() * (10 + player.pots * 3) + 10 + player.pots);
         System.out.println("- Magic Potion: " + price + " gold.");
         printSeperator(20);
-        //ask player if he wants to buy
+        //ask player if he wants to buy one
         System.out.println("Do you want to buy one?\n(1)Yes!\n(2) No thanks.");
         int input = readInt("-> ", 2);
         //check if player wants to buy
-        if(input==1){
+        if (input == 1) {
             clearConsole();
             //check if player has enough gold
             if (player.gold >= price) {
-                printHeading("You bougt a magical potion for " + price + "gold.");
+                printHeading("You bought a magical potion for " + price + "gold.");
                 player.pots++;
                 player.gold -= price;
             } else
                 printHeading("You don't have enough gold to buy this...");
             anythingToContinue();
-         }
+        }
     }
-        //taking a rest
-        public static void takeRest(){
+
+    //taking a rest
+    public static void takeRest() {
+        clearConsole();
+        if (player.restsLeft >= 1) {
+            printHeading("Do you want to take a rest? (" + player.restsLeft + "rest(s) left).");
+            System.out.println("(1) Yes\n(2) No, not now. ");
+            int input = readInt("-> ", 2);
+            if (input == 1) {
+                //player actually takes rest
+                clearConsole();
+                if (player.hp < player.maxHp) {
+                    int hpRestored = (int) (Math.random() * (player.xp / 4 + 1) + 10);
+                    player.hp += hpRestored;
+                    if (player.hp > player.maxHp)
+                        player.hp = player.maxHp;
+                    System.out.println("You took a rest and restored up to " + hpRestored + "health.");
+                    System.out.println("You're now at " + player.hp + "/" + player.maxHp + "health.");
+                    player.restsLeft--;
+                }
+            } else
+                System.out.println("You're at full health! You don't need to rest now.");
+            anythingToContinue();
+        }
+    }
+
+    //create a random battle with a random enemy
+    public static void randomBattle() {
+        clearConsole();
+        printHeading("You encountered an evil minded creature. You'll have to fight it!");
+        anythingToContinue();//lets the game pause until the player wants it to continue
+        //create new enemy with random name and passing it as parameter to the main method
+        battle(new Enemy(enemies[(int) (Math.random() * enemies.length)], player.xp));
+    }
+
+    //create a main battle method
+    public static void battle(Enemy enemy) {
+        //main battle loop
+        while (true) {
             clearConsole();
-            if(player.restsLeft >= 1) {
-                printHeading("Do you want to take a rest? (" + player.restsLeft + "rest(s) left).");
-                System.out.println("(1) Yes\n(2) No, not now. ");
-                int input = readInt("-> ", 2);
-                if (input == 1) {
-                    //player actually takes rest
+            printHeading(enemy.name + "\nnHP: " + enemy.hp + "/" + enemy.maxHp);
+            printHeading(player.name + "\nnHP: " + player.hp + "/" + player.maxHp);
+            System.out.println("Choose an action:");
+            printSeperator(20);
+            System.out.println("(1) Fight\n(2) Use Potion\n(3) Run Away");
+            int input = readInt("-> ", 3);
+            //react accordingly to player input
+            if (input == 1) {
+                int dmg = player.attack() - enemy.defend();
+                int dmgTook = enemy.attack() - player.defend();
+                //check that dmg and dmgTook isn't negative
+                if (dmgTook < 0) {
+                    //add some dmg if player defends very well
+                    dmg -= dmgTook / 2;
+                    dmgTook = 0;
+                }
+                if (dmg < 0)
+                    dmg = 0;
+                //deal damage to both parties
+                player.hp -= dmgTook;
+                enemy.hp -= dmg;
+                //print the info of this battle round
+                clearConsole();
+                printHeading("BATTLE");
+                System.out.println("You dealt " + dmg + "damage to the " + enemy.name + ".");
+                printSeperator(15);
+                System.out.println("The " + enemy.name + " dealt " + dmgTook + " damage to you.");
+                anythingToContinue();
+                //check if player is still alive or dead
+                if (player.hp <= 0) {
+                    playerDied();//method to end the game
+                    break;
+                } else if (enemy.hp <= 0) {
+                    //tell the player he won
                     clearConsole();
-                    if (player.hp < player.maxHp) {
-                        int hpRestored = (int) (Math.random() * (player.xp /4 + 1) + 10);
-                        player.hp += hpRestored;
-                        if (player.hp > player.maxHp)
-                             player.hp = player.maxHp;
-                            System.out.println("You took a rest and restored up to " + hpRestored + "health.");
-                            System.out.println("You're now at " + player.hp + "/" + player.maxHp + "health.");
-                            player.restsLeft--;
-                        }
-                    } else
-                        System.out.println("You're at full health! You don't need to rest now.");
+                    printHeading("You defeated the " + enemy.name + "!");
+                    //increase player xp
+                    player.xp += enemy.xp;
+                    System.out.println("You earned " + enemy.xp + "XP!");
+                    //random drops
+                    boolean addRest = (Math.random() * 5 + 1 <= 2.25);
+                    int goldEarned = (int) (Math.random() * enemy.xp);
+                    if (addRest) {
+                        player.restsLeft++;
+                        System.out.println("You earned the chance to get an additional rest!");
+                    }
+                    if (goldEarned > 0) {
+                        player.gold += goldEarned;
+                        System.out.println("You collect " + goldEarned + "gold from the" + enemy.name + "'s corpse");
+                    }
+                    anythingToContinue();
+                    break;
+                }
+
+            } else if (input == 2) {
+                //use potion
+                clearConsole();
+                if (player.pots > 0 && player.hp < player.maxHp) {
+                    //player can take a potion
+                    printHeading("Do you want to drink a potion? (" + player.pots + " left.)");
+                    System.out.println("(1) Yes\n(2) No, maybe later");
+                    input = readInt("-> ", 2);
+                    if (input == 1) {
+                        //player actually took it
+                        player.hp = player.maxHp;
+                        clearConsole();
+                        printHeading("You drank a magic potion. It restored your health back to " + player.maxHp);
+                        anythingToContinue();
+                    }
+                } else {
+                    //player CANNOT take a potion
+                    printHeading("You don't have any potions or you're at full health.");
                     anythingToContinue();
                 }
-        }
-
-        //create a random battle with a random enemy
-        public static void randomBattle(){
-            clearConsole();
-            printHeading("You encountered an evil minded creature. You'll have to fight it!");
-            anythingToContinue();//lets the game pause until the player wants it to continue
-            //create new enemy with random name and passing it as parameter to the main method
-            battle(new Enemy(enemies[(int)(Math.random()*enemies.length)],player.xp));
-        }
-        //create a main battle method
-        public static void battle(Enemy enemy) {
-            //main battle loop
-            while (true) {
+            } else {
+                //RUN AWAY
                 clearConsole();
-                printHeading(enemy.name + "\nnHP: " + enemy.hp + "/" + enemy.maxHp);
-                printHeading(enemy.name + "\nnHP: " + player.hp + "/" + player.maxHp);
-                System.out.println("Choose an action:");
-                printSeperator(20);
-                System.out.println("(1) Fight\n(2) Use Potion\n(3) Run Away");
-                int input = readInt("-> ", 3);
-                //react accordingly to player input
-                if (input == 1) {
-                    int dmg = player.attack() - enemy.defend();
-                    int dmgTook = enemy.attack() - player.defend();
-                    //check that dmg and dmgTook isn't negative
-                    if (dmgTook < 0) {
-                        //add some dmg if player defends very well
-                        dmg -= dmgTook/2;
-                        dmgTook = 0;
-                    }
-                    if (dmg < 0)
-                        dmg = 0;
-                        //deal damage to both parties
-                        player.hp -= dmgTook;
-                        enemy.hp -= dmg;
-                        //print the info of this battle round
-                        clearConsole();
-                        printHeading("BATTLE");
-                        System.out.println("You dealt " + dmg + "damage to the " + enemy.name + ".");
-                        printSeperator(15);
-                        System.out.println("The " + enemy.name + " dealt " + dmgTook + " damage to you.");
+                if (act != 4) {
+                    clearConsole();
+                    //chance of 35% to escape
+                    if (Math.random() * 10 + 1 <= 3.5) {
+                        printHeading("You ran away from the " + enemy.name + "!");
                         anythingToContinue();
-                        //check if player is still alive or dead
-                        if (player.hp <= 0) {
-                            playerDied();//method to end the game
-                            break;
-                        } else if (enemy.hp <= 0) {
-                            //tell the player he won
-                            clearConsole();
-                            printHeading("You defeated the " + enemy.name + "!");
-                            //increase player xp
-                            player.xp += enemy.xp;
-                            System.out.println("You earned " + enemy.xp + "XP!");
-                            anythingToContinue();
-                            break;
-                        }
-                            //random drops
-                            boolean addRest = (Math.random()*5 + 1 <= 2.25);
-                            int goldEarned = (int) (Math.random()*enemy.xp);
-                            if (addRest) {
-                                player.restsLeft++;
-                                System.out.println("You earned the chance to get an additional rest!");
-                            }
-                            if (goldEarned > 0) {
-                                player.gold += goldEarned;
-                                System.out.println("You collect " + goldEarned + "gold from the" + enemy.name + "'s corpse");
-                            }
-                            anythingToContinue();
-                            break;
-                        }
-                    else if (input==2) {
-                        //use potion
-                        clearConsole();
-                        if (player.pots > 0 && player.hp < player.maxHp) {
-                            //player can take a potion
-                            printHeading("Do you want to drink a potion? (" + player.pots + " left.)");
-                            System.out.println("(1) Yes\n(2) No, maybe later");
-                            input = readInt("-> ", 2);
-                            if (input == 1) {
-                                //player actually took it
-                                player.hp = player.maxHp;
-                                clearConsole();
-                                printHeading("You drank a magic potion. It restored your health back to " + player.maxHp);
-                                anythingToContinue();
-                            }
-                        } else {
-                            //player CANNOT take a potion
-                            printHeading("You don't have any potions or you're at full health.");
-                            anythingToContinue();
-                        }
-                    }else{
-                        //RUN AWAY
-                        clearConsole();
-                        if (act != 4) {
-                            clearConsole();
-                            //chance of 35% to escape
-                            if (Math.random()*10 + 1 <= 3.5) {
-                                printHeading("You ran away from the " + enemy.name + "!");
-                                anythingToContinue();
-                                break;
-                            } else {
-                                printHeading("You didn't manage to escape.");
-                                //calculate damage the player takes
-                                int dmgTook = enemy.attack();
-                                System.out.println("In your hurry you took " + dmgTook + " damage!");
-                                anythingToContinue();
-                                //check if player's still alive
-                                if (player.hp <= 0)
-                                    playerDied();
-                            }
-
-                        } else {
-                            printHeading("YOU CANNOT ESCAPE THE EVIL EMPEROR!!");
-                            anythingToContinue();
-                        }
-
-
+                        break;
+                    } else {
+                        printHeading("You didn't manage to escape.");
+                        //calculate damage the player takes
+                        int dmgTook = enemy.attack();
+                        System.out.println("In your hurry you took " + dmgTook + " damage!");
+                        anythingToContinue();
+                        //check if player's still alive
+                        if (player.hp <= 0)
+                            playerDied();
                     }
+
+                } else {
+                    printHeading("YOU CANNOT ESCAPE THE EVIL EMPEROR!!");
+                    anythingToContinue();
                 }
+
+
             }
-
-        public static void playerDied(){
-            clearConsole();
-            printHeading("You died...");
-            printHeading("You earned " + player.xp + "XP on your journey. Try to earn more next time!");
         }
-
     }
 
-
+}
