@@ -166,7 +166,7 @@ public class GameLogic {
         if (act != 4)
             randomEncounter();
     }
-    public static void printMenu1() {
+    public static void printMenu() {
         clearConsole();
         printHeading(places[place]);
         System.out.println("Choose an action:");
