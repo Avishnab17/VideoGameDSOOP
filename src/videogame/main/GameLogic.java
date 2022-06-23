@@ -12,7 +12,7 @@ public class GameLogic {
     //enemy names
     public static String[] enemies = {"Ogre", "Ogre", "Goblin", "Goblin", "Stone Elemental"};
 
-    public static int place = 0, act = 1;
+    public static int place = 0, act;
     //story elements
     public static String[] places = {"Everlasting Mountains", "Haunted Landlines", "Castle of the Evil Emperor", "Throne Room"};
 
