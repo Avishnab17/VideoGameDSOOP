@@ -57,6 +57,45 @@ public class GameLogic {
         System.out.println("\nEnter anything to continue : ");
         scanner.next();
     }
+
+    public static void startGame() {
+        boolean nameSet=false;
+        String name;
+        //print title screen
+        clearConsole();
+        printSeperator(40);
+        printSeperator(30);
+        System.out.println(" AGE OF EVIL EMPEROR ");
+        System.out.println("HAVE FUN");
+        printSeperator(30);
+        printSeperator(40);
+        anythingToContinue();
+        // Get choice to change his name
+        do {
+            clearConsole();
+            printHeading("What's your name ?");
+            name = scanner.next();
+            clearConsole();
+            printHeading("Your name is " + name + ".\nIs that correct?");
+            System.out.println("(1) Yes!");
+            System.out.println("(2) No,I want to change my name.");
+            int input = readInt("->", 2);
+            if (input == 1)
+                nameSet = true;
+        }while(!nameSet);
+        //creating player object with name
+        player = new Player(name);
+
+        //print first story intro
+        Story.printFirstActIntro();
+
+        //set Running to true for game loop to continue
+        isRunning = true;
+
+        //start main game loop
+        gameLoop();
+    }
+
     public static void characterInfo(){
         clearConsole();
         printHeading("CHARACTER INFO");
@@ -175,42 +214,6 @@ public class GameLogic {
     }
     //method gameLoop
 
-    public static void startGame() {
-        boolean nameSet = false;
-        String name;
-        //print title screen
-        clearConsole();
-        printSeperator(40);
-        printSeperator(30);
-        System.out.println(" AGE OF EVIL EMPEROR ");
-        printSeperator(30);
-        printSeperator(40);
-        anythingToContinue();
-
-        do {
-            clearConsole();
-            printHeading("What's your name ?");
-            name = scanner.next();
-            clearConsole();
-            printHeading("Your name is " + name + ".\nIs that correct?");
-            System.out.println("(1) Yes!");
-            System.out.println("(2) No,I want to change my name.");
-            int input = readInt("->", 2);
-            if (input == 1)
-                nameSet = true;
-        } while (!nameSet);
-        //creating player object with name
-        player = new Player(name);
-
-        //print first story intro
-        Story.printFirstActIntro();
-
-        //set Running to true for game loop to continue
-        isRunning = true;
-
-        //start main game loop
-        gameLoop();
-    }
 
     //the final(last) battle of the entire game
     public static void finalBattle() {

@@ -1,6 +1,6 @@
 package videogame.main;
 
-public class Player extends Character {
+public class Player extends Character { //inherit from superclass Character
 
     //integers to store number of upgrades/skills in each path
     public int numAtkUpgrades, numDefUpgrades;
@@ -13,7 +13,7 @@ public class Player extends Character {
     public String[] defUpgrades = {"Heavy Bones","StoneSkin","Scale Armor","Holy Aura"};
 
     //Player specific constructor
-    public Player(String name){
+    public Player(String name){  //only takes name since maxHp and xp will be hardcoded
         //calling constructor of superclass
         super(name, 100, 0);
         //Setting # of upgrades to 0
@@ -29,7 +29,7 @@ public class Player extends Character {
 
 
     //Player specific methods (more in next part)
-    @Override
+    @Override  //indicates that those methods altered from what they have been assigned to in their superclass
     public int attack(){
 
         //  TODO Auto-generated method stub
@@ -55,8 +55,7 @@ public class Player extends Character {
         if(input == 1){
             GameLogic.printHeading("You chose " + atkUpgrades[numAtkUpgrades] + "!");
             numAtkUpgrades++;
-        }
-        else{
+        }else{
             GameLogic.printHeading("You chose " + defUpgrades[numDefUpgrades] + "!");
             numDefUpgrades++;
         }
