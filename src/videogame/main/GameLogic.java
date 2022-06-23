@@ -6,16 +6,13 @@ public class GameLogic {
     static Scanner scanner = new Scanner(System.in);
     static Player player;
     public static boolean isRunning;
-
     //random encounters
     public static String[] encounters = {"Battle", "Battle", "Battle", "Rest", "Rest"};
     //enemy names
     public static String[] enemies = {"Ogre", "Ogre", "Goblin", "Goblin", "Stone Elemental"};
-
     public static int place = 0, act = 1;
     //story elements
     public static String[] places = {"Everlasting Mountains", "Haunted Landlines", "Castle of the Evil Emperor", "Throne Room"};
-
     //method readInt
     public static int readInt(String prompt, int userChoices) {
         int input;
@@ -31,72 +28,27 @@ public class GameLogic {
         }while(input < 1 || input > userChoices); //to get user input, as long as input is not between 1 and number of choices
         return input;
     }
-
     //method clearConsole
     public static void clearConsole() {
         for (int i = 0; i < 100; i++)
             System.out.println();
     }
-
     //print separator
     public static void printSeperator(int n) {
         for (int i = 0; i < n; i++)
             System.out.print("-");
         System.out.println();
     }
-
     //method to printf heading
     public static void printHeading(String title) {
         printSeperator(30);
         System.out.println(title);
         printSeperator(30);
     }
-
     //method to stop the game until user enters anything, so that user can get time to read the console
     public static void anythingToContinue() {
         System.out.println("\nEnter anything to continue : ");
         scanner.next();
-    }
-
-    public static void startGame() {
-        boolean nameSet=false;
-        String name;
-        //print title screen
-        clearConsole();
-        printSeperator(40);
-        printSeperator(30);
-        System.out.println(" AGE OF EVIL EMPEROR ");
-        System.out.println("HAVE FUN");
-        printSeperator(30);
-        printSeperator(40);
-        anythingToContinue();
-        // Get choice to change his name
-        do {
-            clearConsole();
-            printHeading("What's your name ?");
-            name = scanner.next();
-            clearConsole();
-            printHeading("Your name is " + name + ".\nIs that correct?");
-            System.out.println("(1) Yes!");
-            System.out.println("(2) No,I want to change my name.");
-            int input = readInt("->", 2);
-            if (input == 1)
-                nameSet = true;
-        }while(!nameSet);
-        //print story intro
-        Story.printIntro();
-
-        //creating player object with name
-        player = new Player(name);
-
-        //print first story act intro
-        Story.printFirstActIntro();
-
-        //set Running to true for game loop to continue
-        isRunning = true;
-
-        //start main game loop
-        gameLoop();
     }
 
     //change game's values based on player xp
@@ -206,7 +158,6 @@ public class GameLogic {
         }
         anythingToContinue();
     }
-
     public static void printMenu() {
         clearConsole();
         printHeading(places[place]);
@@ -228,15 +179,7 @@ public class GameLogic {
                 isRunning = false;
         }
     }
-
-
-
-
-
-
-
     //method gameLoop
-
 
     //the final(last) battle of the entire game
     public static void finalBattle() {
@@ -419,8 +362,6 @@ public class GameLogic {
                     printHeading("YOU CANNOT ESCAPE THE EVIL EMPEROR!!");
                     anythingToContinue();
                 }
-
-
             }
         }
     }
