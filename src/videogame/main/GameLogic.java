@@ -75,11 +75,13 @@ public class GameLogic {
             if (input == 1)
                 nameSet = true;
         }while(!nameSet);
-        //print story intro
-        Story.printIntro();
+
 
         //creating player object with name
         player = new Player(name);
+
+        //print story intro
+        Story.printIntro();
 
         //print first story act intro
         Story.printFirstActIntro();
