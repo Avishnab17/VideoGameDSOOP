@@ -29,7 +29,7 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT I -OUTRO");
         GameLogic.printSeperator(30);
-        System.out.println("");
+        System.out.println("-");
         GameLogic.anythingToContinue();
     }
     public static void printSecondActIntro()
@@ -38,7 +38,7 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT II -INTRO");
         GameLogic.printSeperator(30);
-        System.out.println("");
+        System.out.println("-");
         GameLogic.anythingToContinue();
     }
 
@@ -48,7 +48,7 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT II -OUTRO");
         GameLogic.printSeperator(30);
-        System.out.println("");
+        System.out.println("-");
         GameLogic.anythingToContinue();
     }
 
@@ -58,7 +58,7 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT III -INTRO");
         GameLogic.printSeperator(30);
-        System.out.println("");
+        System.out.println("-");
         GameLogic.anythingToContinue();
     }
     public static void printThirdActOutro()
@@ -67,7 +67,7 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT III -OUTRO");
         GameLogic.printSeperator(30);
-        System.out.println("");
+        System.out.println("-");
         GameLogic.anythingToContinue();
     }
     public static void printFourthActIntro()
@@ -76,7 +76,7 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT IV -INTRO");
         GameLogic.printSeperator(30);
-        System.out.println("");
+        System.out.println("-");
         GameLogic.anythingToContinue();
     }
     public static void printEnd(Player player)
