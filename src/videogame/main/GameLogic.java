@@ -239,8 +239,6 @@ public class GameLogic {
     }
 
 
-
-
     public static void shop() {
         clearConsole();
         printHeading("You meet a mysterious stranger.\nHe offers you something!");
@@ -383,7 +381,6 @@ public class GameLogic {
                 //RUN AWAY
                 clearConsole();
                 if (act != 4) {
-                    clearConsole();
                     //chance of 35% to escape
                     if (Math.random() * 10 + 1 <= 3.5) {
                         printHeading("You ran away from the " + enemy.name + "!");
