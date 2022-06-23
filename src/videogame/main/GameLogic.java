@@ -200,6 +200,15 @@ public class GameLogic {
         anythingToContinue();
     }
 
+    public static void printMenu() {
+        clearConsole();
+        printHeading(places[place]);
+        System.out.println("Choose an action:");
+        printSeperator(20);
+        System.out.println("(1) Continue on your Journey ");
+        System.out.println("(2) Character Information");
+        System.out.println("(3) Exit Game");
+    }
     public static void gameLoop() {
         while(isRunning) {
             printMenu();
