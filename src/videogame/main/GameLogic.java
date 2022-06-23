@@ -236,7 +236,10 @@ public class GameLogic {
         clearConsole();
         printHeading("You died...");
         printHeading("You earned " + player.xp + "XP on your journey. Try to earn more next time!");
+        System.out.println("Thank you for playing. I hope you enjoyed");
+        isRunning=false;
     }
+
 
 
     public static void shop() {
