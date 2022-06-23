@@ -352,6 +352,7 @@ public class GameLogic {
                     //increase player xp
                     player.xp += enemy.xp;
                     System.out.println("You earned " + enemy.xp + "XP!");
+
                     //random drops
                     boolean addRest = (Math.random() * 5 + 1 <= 2.25);
                     int goldEarned = (int) (Math.random() * enemy.xp);
@@ -372,6 +373,7 @@ public class GameLogic {
                 clearConsole();
                 if (player.pots > 0 && player.hp < player.maxHp) {
                     //player can take a potion
+                    //make sure player wants to drink potion
                     printHeading("Do you want to drink a potion? (" + player.pots + " left.)");
                     System.out.println("(1) Yes\n(2) No, maybe later");
                     input = readInt("-> ", 2);
