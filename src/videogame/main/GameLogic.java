@@ -96,6 +96,14 @@ public class GameLogic {
         gameLoop();
     }
 
+    //method to continue journey
+    public static void continueJourney() {
+        //check if act must be increased
+        checkAct();
+        //check if game is in last act
+        if (act != 4)
+            randomEncounter();
+    }
     public static void characterInfo(){
         clearConsole();
         printHeading("CHARACTER INFO");
@@ -116,6 +124,30 @@ public class GameLogic {
         }
         anythingToContinue();
     }
+
+    public static void printMenu() {
+        clearConsole();
+        printHeading(places[place]);
+        System.out.println("Choose an action:");
+        printSeperator(20);
+        System.out.println("(1) Continue on your Journey ");
+        System.out.println("(2) Character Information");
+        System.out.println("(3) Exit Game");
+    }
+    public static void gameLoop() {
+        while(isRunning) {
+            printMenu();
+            int input = readInt("-> ", 3);
+            if (input == 1)
+                continueJourney();
+            else if (input == 2)
+                characterInfo();
+            else
+                isRunning = false;
+        }
+    }
+
+
 
     //change game's values based on player xp
     public static void checkAct() {
@@ -196,22 +228,8 @@ public class GameLogic {
     }
 
     //to continue journey
-    public static void continueJourney() {
-        //check if act must be increased
-        checkAct();
-        //check if game is in last act
-        if (act != 4)
-            randomEncounter();
-    }
-    public static void printMenu() {
-        clearConsole();
-        printHeading(places[place]);
-        System.out.println("Choose an action:");
-        printSeperator(20);
-        System.out.println("(1) Continue on your Journey ");
-        System.out.println("(2) Character Information");
-        System.out.println("(3) Exit Game");
-    }
+
+
     //method gameLoop
 
 
@@ -231,18 +249,7 @@ public class GameLogic {
     }
 
 
-    public static void gameLoop() {
-        while (isRunning) {
-            printMenu();
-            int input = readInt("-> ", 3);
-            if (input == 1)
-                continueJourney();
-            else if (input == 2)
-                characterInfo();
-            else
-                isRunning = false;
-        }
-    }
+
 
     public static void shop() {
         clearConsole();

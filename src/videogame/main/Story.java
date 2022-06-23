@@ -83,12 +83,9 @@ public class Story {
     {
         GameLogic.clearConsole();
         GameLogic.printSeperator(30);
-        System.out.println("Congratulations, "+player.name +"cdkfn ");
+        System.out.println("Congratulations, "+player.name +" defeated enemy ");
         GameLogic.printSeperator(30);
         System.out.println("Hope you enjoyed it");
-        GameLogic.anythingToContinue();
     }
-
-
 }
 
