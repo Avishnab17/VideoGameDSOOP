@@ -166,7 +166,7 @@ public class GameLogic {
 
     public static void randomEncounter() {
         //rand num between 0 and length of encounters array
-        int encounter = (int) (Math.random() * encounters.length);
+        int encounter = (int) (Math.random()* encounters.length);
         //calling methods
         if (encounters[encounter].equals("Battle")) {
             randomBattle();
