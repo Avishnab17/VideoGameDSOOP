@@ -304,7 +304,7 @@ public class GameLogic {
         while (true) {
             clearConsole();
             printHeading(enemy.name + "\nnHP: " + enemy.hp + "/" + enemy.maxHp);
-            printHeading(enemy.name + "\nnHP: " + player.hp + "/" + player.maxHp);
+            printHeading(player.name + "\nnHP: " + player.hp + "/" + player.maxHp);
             System.out.println("Choose an action:");
             printSeperator(20);
             System.out.println("(1) Fight\n(2) Use Potion\n(3) Run Away");
