@@ -57,18 +57,15 @@ public class GameLogic {
         System.out.println("\nEnter anything to continue : ");
         scanner.next();
     }
-
-    public static void characterInfo() {
+    public static void characterInfo(){
         clearConsole();
         printHeading("CHARACTER INFO");
         System.out.println("player.name" + "\tHP " + player.hp + "/" + player.maxHp);
         printSeperator(20);
         System.out.println("Experience: " + player.xp + "\tGold: "+ player.gold);
         printSeperator(20);
-
         System.out.println("Number of Potions" + player.pots);
         printSeperator(20);
-
 
         //Printing chosen traits
         if (player.numAtkUpgrades > 0) {
@@ -168,7 +165,6 @@ public class GameLogic {
         if (act != 4)
             randomEncounter();
     }
-
     public static void printMenu() {
         clearConsole();
         printHeading(places[place]);
