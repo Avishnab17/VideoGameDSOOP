@@ -86,6 +86,7 @@ public class GameLogic {
         //creating player object with name
         player = new Player(name);
 
+        Story.printIntro();
         //print first story intro
         Story.printFirstActIntro();
 
@@ -330,7 +331,7 @@ public class GameLogic {
                 //print the info of this battle round
                 clearConsole();
                 printHeading("BATTLE");
-                System.out.println("You dealt " + dmg + "damage to the " + enemy.name + ".");
+                System.out.println("You dealt " + dmg + " damage to the " + enemy.name + ".");
                 printSeperator(15);
                 System.out.println("The " + enemy.name + " dealt " + dmgTook + " damage to you.");
                 anythingToContinue();
@@ -344,7 +345,7 @@ public class GameLogic {
                     printHeading("You defeated the " + enemy.name + "!");
                     //increase player xp
                     player.xp += enemy.xp;
-                    System.out.println("You earned " + enemy.xp + "XP!");
+                    System.out.println("You earned " + enemy.xp + " XP!");
                     //random drops
                     boolean addRest = (Math.random() * 5 + 1 <= 2.25);
                     int goldEarned = (int) (Math.random() * enemy.xp);
@@ -354,7 +355,7 @@ public class GameLogic {
                     }
                     if (goldEarned > 0) {
                         player.gold += goldEarned;
-                        System.out.println("You collect " + goldEarned + "gold from the" + enemy.name + "'s corpse");
+                        System.out.println("You collect " + goldEarned + " gold from the" + enemy.name + "'s corpse");
                     }
                     anythingToContinue();
                     break;
