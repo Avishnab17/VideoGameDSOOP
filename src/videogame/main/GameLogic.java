@@ -240,8 +240,6 @@ public class GameLogic {
         isRunning=false;
     }
 
-
-
     public static void shop() {
         clearConsole();
         printHeading("You meet a mysterious stranger.\nHe offers you something!");
