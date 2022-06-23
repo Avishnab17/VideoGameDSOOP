@@ -19,15 +19,16 @@ public class GameLogic {
     //method readInt
     public static int readInt(String prompt, int userChoices) {
         int input;
+
         do {
             System.out.println(prompt);
-            try {
-                input = Integer.parseInt(scanner.next());
-            } catch (Exception e) {
+            try{
+                input = Integer.parseInt(scanner.next()); //next reads whatever user inputs,it will be in string format, so we use Integer.parseInt to convert it to integer
+            }catch(Exception e){  //if any error occurs, we set our input to -1 and print the message.
                 input = -1;
                 System.out.println("Please enter an integer!");
             }
-        } while (input < 1 || input > userChoices);
+        }while(input < 1 || input > userChoices); //to get user input, as long as input is not between 1 and number of choices
         return input;
     }
 
@@ -44,15 +45,16 @@ public class GameLogic {
         System.out.println();
     }
 
+    //method to printf heading
     public static void printHeading(String title) {
         printSeperator(30);
         System.out.println(title);
         printSeperator(30);
     }
 
-    //method to stop the game until user enters anything
+    //method to stop the game until user enters anything, so that user can get time to read the console
     public static void anythingToContinue() {
-        System.out.println("\nEnter anything to continue...");
+        System.out.println("\nEnter anything to continue : ");
         scanner.next();
     }
 
