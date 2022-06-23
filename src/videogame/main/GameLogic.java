@@ -195,7 +195,7 @@ public class GameLogic {
             printHeading("What's your name ?");
             name = scanner.next();
             clearConsole();
-            printHeading("Your name is" + name + "./Is that correct?");
+            printHeading("Your name is " + name + ".\nIs that correct?");
             System.out.println("(1) Yes!");
             System.out.println("(2) No,I want to change my name.");
             int input = readInt("->", 2);
@@ -278,7 +278,7 @@ public class GameLogic {
                             player.restsLeft--;
                         }
                     } else
-                        System.out.println("You're now at " + player.hp + "/" + player.maxHp + "health.");
+                        System.out.println("You're at full health! You don't need to rest now.");
                     anythingToContinue();
                 }
         }
@@ -312,7 +312,7 @@ public class GameLogic {
                         dmg -= dmgTook/2;
                         dmgTook = 0;
                     }
-                    if (dmg < 0) {
+                    if (dmg < 0)
                         dmg = 0;
                         //deal damage to both parties
                         player.hp -= dmgTook;
@@ -352,7 +352,7 @@ public class GameLogic {
                             anythingToContinue();
                             break;
                         }
-                    } else if (input==2) {
+                    else if (input==2) {
                         //use potion
                         clearConsole();
                         if (player.pots > 0 && player.hp < player.maxHp) {
@@ -386,7 +386,7 @@ public class GameLogic {
                                 printHeading("You didn't manage to escape.");
                                 //calculate damage the player takes
                                 int dmgTook = enemy.attack();
-                                System.out.println("In your hurry you took 0 " + dmgTook + "damage!");
+                                System.out.println("In your hurry you took " + dmgTook + " damage!");
                                 anythingToContinue();
                                 //check if player's still alive
                                 if (player.hp <= 0)
