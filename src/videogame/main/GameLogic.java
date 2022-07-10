@@ -330,7 +330,7 @@ public class GameLogic {
                 //print the info of this battle round
                 clearConsole();
                 printHeading("BATTLE");
-                System.out.println("You dealt " + dmg + "  damage to the " + enemy.name + ".");
+                System.out.println("You dealt " + dmg + " damage to the " + enemy.name + ".");
                 printSeperator(15);
                 System.out.println("The " + enemy.name + " dealt " + dmgTook + " damage to you.");
                 anythingToContinue();
