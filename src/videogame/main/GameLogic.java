@@ -287,8 +287,11 @@ public class GameLogic {
                     System.out.println("You're now at " + player.hp + "/" + player.maxHp + " health.");
                     player.restsLeft--;
                // }
-            } else
-                System.out.println("Let's continue to play then");
+            } else if ((input==1)&&(player.hp == player.maxHp)) {
+                System.out.println("Your health is at its maximum, you are fit to fight!");
+            }
+            else
+                System.out.println("Let's continue to play then!");
             anythingToContinue();
         }
     }
