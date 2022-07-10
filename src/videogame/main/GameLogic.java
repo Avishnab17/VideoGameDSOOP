@@ -287,7 +287,7 @@ public class GameLogic {
                     player.restsLeft--;
                 }
             } else
-                System.out.println("You're at full health! You don't need to rest now.");
+                System.out.println("Let's continue to play then");
             anythingToContinue();
         }
     }
