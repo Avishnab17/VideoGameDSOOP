@@ -20,7 +20,7 @@ public class Player extends Character { //inherit from superclass Character
         this.numAtkUpgrades = 0;
         this.numDefUpgrades = 0;
         //set additional stats
-        this.gold = 5;
+        this.gold = 10;
         this.restsLeft = 1;
         this.pots = 0;
         //let the player choose a trait when creating a new character
