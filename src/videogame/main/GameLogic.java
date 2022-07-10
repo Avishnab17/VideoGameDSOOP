@@ -288,7 +288,7 @@ public class GameLogic {
                     player.restsLeft--;
                // }
             } else
-                System.out.println("You're at full health! You don't need to rest now.");
+                System.out.println("Let's continue to play then");
             anythingToContinue();
         }
     }
@@ -331,7 +331,7 @@ public class GameLogic {
                 //print the info of this battle round
                 clearConsole();
                 printHeading("BATTLE");
-                System.out.println("You dealt " + dmg + "damage to the " + enemy.name + ".");
+                System.out.println("You dealt " + dmg + " damage to the " + enemy.name + ".");
                 printSeperator(15);
                 System.out.println("The " + enemy.name + " dealt " + dmgTook + " damage to you.");
                 anythingToContinue();
