@@ -93,11 +93,13 @@ public class GameLogic {
         gameLoop();
     }
 
+    public static int encounternum=0;
     //change game's values based on player xp
     public static void checkAct() {
         //change acts based on xp
         //level up
-        if (player.xp >= 10 && act == 1) {
+        if (encounternum == 1 && act == 1) {
+            encounternum=0;
             //increment act and place;
             act = 2;
             place = 1;
@@ -120,7 +122,8 @@ public class GameLogic {
             encounters[2] = "Battle";
             encounters[3] = "Rest";
             encounters[4] = "Shop";
-        } else if (player.xp >= 50 && act == 2){
+        } else if (encounternum == 1 && act == 2){
+            encounternum=0;
             //increment act and place
             act = 3;
             place = 2;
@@ -144,7 +147,8 @@ public class GameLogic {
             encounters[4] = "Shop";
             //fully heal player
             player.hp = player.maxHp;
-        }else if (player.xp >= 100 && act == 3) {
+        }else if (encounternum == 2 && act == 3) {
+            encounternum=0;
             //increment act and place
             act = 4;
             place = 3;
@@ -236,7 +240,10 @@ public class GameLogic {
         //creating the evil emperor and letting the player fight against him
         battle(new Enemy("THE EVIL EMPEROR", 300));
         //printing the proper ending
+        if(encounternum==1)
+        {
         Story.printEnd(player);
+        }
         isRunning = false;
     }
 
@@ -349,6 +356,7 @@ public class GameLogic {
                 } else if (enemy.hp <= 0) {
                     //tell the player he won
                     clearConsole();
+                    encounternum++;
                     printHeading("You defeated the " + enemy.name + "!");
                     //increase player xp
                     player.xp += enemy.xp;
@@ -365,6 +373,7 @@ public class GameLogic {
                         player.gold += goldEarned;
                         System.out.println("You collect " + goldEarned + " gold from the " + enemy.name + "'s corpse");
                     }
+                    //encounternum++;
                     anythingToContinue();
                     break;
                 }
