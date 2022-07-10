@@ -274,18 +274,19 @@ public class GameLogic {
             printHeading("Do you want to take a rest? (" + player.restsLeft + "rest(s) left).");
             System.out.println("(1) Yes\n(2) No, not now. ");
             int input = readInt("-> ", 2);
-            if (input == 1) {
+            if ((input == 1)&&(player.hp < player.maxHp)) {
                 //player actually takes rest
                 clearConsole();
-                if (player.hp < player.maxHp) {
+                //if (player.hp < player.maxHp) {
                     int hpRestored = (int) (Math.random() * (player.xp/4 + 1) + 10);
                     player.hp += hpRestored;
-                    if (player.hp > player.maxHp)
+                    if (player.hp > player.maxHp) {
                         player.hp = player.maxHp;
+                    }
                     System.out.println("You took a rest and restored up to " + hpRestored + " health.");
                     System.out.println("You're now at " + player.hp + "/" + player.maxHp + " health.");
                     player.restsLeft--;
-                }
+               // }
             } else
                 System.out.println("You're at full health! You don't need to rest now.");
             anythingToContinue();
