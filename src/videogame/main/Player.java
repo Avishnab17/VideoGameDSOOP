@@ -33,13 +33,13 @@ public class Player extends Character { //inherit from superclass Character
     public int attack(){
 
         //  TODO Auto-generated method stub
-        return (int)(Math.random()*(xp/4 + numAtkUpgrades*3 + 3) + xp/10 + numAtkUpgrades*3 + numDefUpgrades + 1);
+        return (int)(Math.random()*(xp/4 + numAtkUpgrades*4 + 3) + xp/10 + numAtkUpgrades*4 + numDefUpgrades + 1);
     }
     @Override
     public int defend(){
 
         //  TODO Auto-generated method stub
-        return (int)(Math.random()*(xp/4 + numDefUpgrades*1 + 3) + xp/10 + numDefUpgrades*1 + numAtkUpgrades + 1);
+        return (int)(Math.random()*(xp/4 + numDefUpgrades*2 + 3) + xp/10 + numDefUpgrades*2 + numAtkUpgrades + 1);
     }
 
     //let the player choose a trait of either skill path
