@@ -96,11 +96,13 @@ public class GameLogic {
     //change game's values based on player xp
     public static void checkAct() {
         //change acts based on xp
+        //level up
         if (player.xp >= 10 && act == 1) {
             //increment act and place;
             act = 2;
             place = 1;
             //story
+            System.out.println("Congratulations, you have move on to Level 2!");
             Story.printFirstActOutro();
             //let player level up
             player.chooseTrait();
@@ -122,6 +124,7 @@ public class GameLogic {
             //increment act and place
             act = 3;
             place = 2;
+            System.out.println("Congratulations, you have move on to Level 3!");
             Story.printSecondActOutro();
             //level up
             player.chooseTrait();
@@ -146,6 +149,7 @@ public class GameLogic {
             act = 4;
             place = 3;
             //story
+            System.out.println("Congratulations, you have move on to Level 4!");
             Story.printThirdActOutro();
             //level up
             player.chooseTrait();
