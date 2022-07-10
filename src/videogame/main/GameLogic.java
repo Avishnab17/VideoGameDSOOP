@@ -184,7 +184,9 @@ public class GameLogic {
     public static void characterInfo(){
         clearConsole();
         printHeading("CHARACTER INFO");
-        System.out.println(player.name + "\tHP " + player.hp + "/" + player.maxHp);
+        System.out.println("Name: " +player.name);
+        printSeperator(20);
+        System.out.println("HP: "+player.hp + "/" + player.maxHp);
         printSeperator(20);
         System.out.println("Experience: " + player.xp + "\tGold: " + player.gold);
         printSeperator(20);
