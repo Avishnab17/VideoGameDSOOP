@@ -381,6 +381,9 @@ public class GameLogic {
                 } else {
                     //player CANNOT take a potion
                     printHeading("You don't have any potions or you're at full health.");
+                    System.out.println("HP: "+player.hp + "/" + player.maxHp);
+                    printSeperator(20);
+                    System.out.println("Number of Potions: " + player.pots);
                     anythingToContinue();
                 }
             } else {
