@@ -188,7 +188,7 @@ public class GameLogic {
         printSeperator(20);
         System.out.println("Experience: " + player.xp + "\tGold: " + player.gold);
         printSeperator(20);
-        System.out.println("Number of Potions" + player.pots);
+        System.out.println("Number of Potions: " + player.pots);
         printSeperator(20);
 
         //Printing chosen traits
