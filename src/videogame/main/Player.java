@@ -48,12 +48,12 @@ public class Player extends Character { //inherit from superclass Character
 
         //  TODO Auto-generated method stub
         return (int)(Math.random()*(xp/4 + numAtkUpgrades*4 + 3) + xp/10 + numAtkUpgrades*4 + numDefUpgrades + 1);
-        /**
-         * This method is overridden from character
-         * @return a random value
-         * @author Vrisht-Raaj
-         */
     }
+    /**
+     * This method is overridden from character
+     * @return a random value
+     * @author Vrisht-Raaj
+     */
     @Override
     public int defend(){
 
