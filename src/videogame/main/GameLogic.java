@@ -96,7 +96,7 @@ public class GameLogic {
         scanner.next();
     }
 
-    /***
+    /**
      *This method is used to start the game.
      * We need to input our name, and we can change our name if it is incorrect.
      * It creates a player object and set isRunning to true for the gameLoop to continue.
@@ -149,7 +149,7 @@ public class GameLogic {
     public static int encounternum=0;
     //change game's values based on player xp
 
-    /***
+    /**
      * This method enables us to level up in the game.
      * @author Avishna
      */
@@ -224,7 +224,7 @@ public class GameLogic {
         }
     }
 
-    /***
+    /**
      *  This method which presents a random encounter to the player. eg fight, rests or shop
      *  @author Avishna
      */
