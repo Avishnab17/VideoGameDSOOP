@@ -86,7 +86,7 @@ public class GameLogic {
     }
     //method to stop the game until user enters anything, so that user can get time to read the console
 
-    /***
+    /**
      * @author Avishna
      * This method is used to enter any integer or number
      * input one value at a time
@@ -298,6 +298,10 @@ public class GameLogic {
     }
     //method gameLoop
 
+    /**
+     * This method is for the final battle. The enemy that the player has to fight is The evil emperor
+     * @author Yashi
+     */
     //the final(last) battle of the entire game
     public static void finalBattle() {
         //creating the evil emperor and letting the player fight against him
@@ -310,6 +314,10 @@ public class GameLogic {
         isRunning = false;
     }
 
+    /**
+     * This method is to display a message to indicate that the player died in case he was defeated by the enemy
+     * @author Yashi
+     */
     public static void playerDied() {
         clearConsole();
         printHeading("You died...");
@@ -317,7 +325,10 @@ public class GameLogic {
         System.out.println("Thank you for playing. I hope you enjoyed");
         isRunning=false;
     }
-
+    /**
+     * This method is called when the player meets a mysterious stranger from whom he can shop potions only if he has enough gold.
+     * @author Yashi
+     */
     public static void shop() {
         clearConsole();
         printHeading("You meet a mysterious stranger.\nHe offers you something!");
@@ -341,7 +352,10 @@ public class GameLogic {
         }
     }
 
-    //taking a rest
+    /**
+     * This method asks the player if he is willing to take a rest. If player's health is full, and he wants to take rest, he will not be able to take rest. If he is not at full health and wishes to take rest, he will be allowed to do so. If he chooses not to take rest, he will continue to play.
+     * @author Yashi
+     */
     public static void takeRest() {
         clearConsole();
         if (player.restsLeft >= 1) {
@@ -370,7 +384,10 @@ public class GameLogic {
         }
     }
 
-    //create a random battle with a random enemy
+    /**
+     * This method is creating a battle with a random enemy.
+     * @author Yashi
+     */
     public static void randomBattle() {
         clearConsole();
         printHeading("You encountered an evil minded creature. You'll have to fight it!");
@@ -379,7 +396,14 @@ public class GameLogic {
         battle(new Enemy(enemies[(int) (Math.random() * enemies.length)], player.xp));
     }
 
-    //create a main battle method
+    /**
+     * This method will give the player the option to fight, use potion or run away from encountered enemy.
+     * If player chooses to fight, the damage caused by the enemy and  to the enemy will be accounted.
+     * If he chooses to use potion, he will be able to use it only if he possesses any.
+     * If he chooses to run away, he might deal with damage from the enemy
+     * @param enemy It takes the random enemy generated from randomBattle, and for finalBattle it will take THE EVIL EMPEROR.
+     * @author Yashi
+     */
     public static void battle(Enemy enemy) {
         //main battle loop
         while (true) {
