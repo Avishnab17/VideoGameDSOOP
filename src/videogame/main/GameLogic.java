@@ -87,9 +87,9 @@ public class GameLogic {
     //method to stop the game until user enters anything, so that user can get time to read the console
 
     /**
-     * @author Avishna
      * This method is used to enter any integer or number
-     * input one value at a time
+     * Input one value at a time
+     * @author Avishna
      */
     public static void anythingToContinue() {
         System.out.println("\nEnter anything to continue : ");
@@ -97,11 +97,11 @@ public class GameLogic {
     }
 
     /***
-     * @author Vaishnavi
      *This method is used to start the game.
      * We need to input our name, and we can change our name if it is incorrect.
      * It creates a player object and set isRunning to true for the gameLoop to continue.
      * It then calls the method gameLoop.
+     * @author Vaishnavi
      */
     public static void startGame(){
         boolean nameSet=false;
@@ -150,8 +150,8 @@ public class GameLogic {
     //change game's values based on player xp
 
     /***
-     * @author Avishna
      * This method enables us to level up in the game.
+     * @author Avishna
      */
     public static void checkAct() {
         //change acts based on xp
@@ -225,8 +225,8 @@ public class GameLogic {
     }
 
     /***
-     * @author Avishna
-     *  This method which presents a raandom encounter to the player. eg fight, rests or shop
+     *  This method which presents a random encounter to the player. eg fight, rests or shop
+     *  @author Avishna
      */
 
     public static void randomEncounter() {
