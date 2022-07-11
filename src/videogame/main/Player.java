@@ -1,5 +1,9 @@
 package videogame.main;
 
+/**
+ * This class is extended from Character
+ * @author Vrisht-Raaj
+ */
 public class Player extends Character { //inherit from superclass Character
 
     //integers to store number of upgrades/skills in each path
@@ -12,6 +16,11 @@ public class Player extends Character { //inherit from superclass Character
     public String[] atkUpgrades = {"Strength","Power","Might","Godlike Strength"};
     public String[] defUpgrades = {"Heavy Bones","StoneSkin","Scale Armor","Holy Aura"};
 
+    /**
+     * This is player specific constructor.
+     * @param name Player's name
+     * @author Vrisht-Raaj
+     */
     //Player specific constructor
     public Player(String name){  //only takes name since maxHp and xp will be hardcoded
         //calling constructor of superclass
@@ -27,22 +36,35 @@ public class Player extends Character { //inherit from superclass Character
         chooseTrait();
     }
 
+    /**
+     * This method is overridden from character
+     * @return a random value
+     * @author Vrisht-Raaj
+     */
 
     //Player specific methods (more in next part)
     @Override  //indicates that those methods altered from what they have been assigned to in their superclass
     public int attack(){
 
         //  TODO Auto-generated method stub
-        return (int)(Math.random()*(xp/4 + numAtkUpgrades*3 + 3) + xp/10 + numAtkUpgrades*2 + numDefUpgrades + 1);
+        return (int)(Math.random()*(xp/4 + numAtkUpgrades*4 + 3) + xp/10 + numAtkUpgrades*4 + numDefUpgrades + 1);
     }
+    /**
+     * This method is overridden from character
+     * @return a random value
+     * @author Vrisht-Raaj
+     */
     @Override
     public int defend(){
 
         //  TODO Auto-generated method stub
-        return (int)(Math.random()*(xp/4 + numDefUpgrades*3 + 3) + xp/10 + numDefUpgrades*2 + numAtkUpgrades + 1);
+        return (int)(Math.random()*(xp/4 + numDefUpgrades*2 + 3) + xp/10 + numDefUpgrades*2 + numAtkUpgrades + 1);
     }
 
-    //let the player choose a trait of either skill path
+    /**
+     * This method let the player choose a trait of either skill path
+     * @author Vrisht-Raaj
+     */
     public void chooseTrait(){
         GameLogic.clearConsole();
         GameLogic.printHeading("Choose a trait:");

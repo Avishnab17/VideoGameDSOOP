@@ -1,7 +1,12 @@
 package videogame.main;
 import java.util.Scanner;
 
-//
+/**
+ * This class is the main class for building the whole game
+ *
+ * @author Bootun Doorgeshwaree(Avishna),Dookheet Vaishnavi, Joyseeree Vrisht-Raaj(Ryan), Munogee Nayurvi
+ *
+ */
 public class GameLogic {
     static Scanner scanner = new Scanner(System.in);
     static Player player;
@@ -14,6 +19,17 @@ public class GameLogic {
     //story elements
     public static String[] places = {"Everlasting Mountains", "Haunted Landlines", "Castle of the Evil Emperor", "Throne Room"};
     //method readInt
+
+    /**
+     * This method is for reading the input of the user prompting him to enter an integer.
+     * It is called in other methods where the user will use it to proceed with the game.
+     *
+     * @author Avishna
+     *
+     * @param prompt It is the input of the user which will be stored in string format. It represents the choice of the user
+     * @param userChoices the number of choices will be hardcoded through the game when calling the method
+     * @return The choice of the user in integer format
+     */
     public static int readInt(String prompt, int userChoices) {
         int input;
 
@@ -29,27 +45,64 @@ public class GameLogic {
         return input;
     }
     //method clearConsole
+
+    /**
+     * This is a simple method for display purposes.
+     * It prints a lot of 100 lines in the terminal whenever the method is called
+     *
+     * @author Avishna
+     *
+     */
     public static void clearConsole() {
         for (int i = 0; i < 100; i++)
             System.out.println();
     }
     //print separator
+
+    /**
+     * This is a method to display a line of dashes whenever it is called.
+     *
+     * @author Avishna
+     *
+     * @param n It is the number of dashes
+     */
     public static void printSeperator(int n) {
         for (int i = 0; i < n; i++)
             System.out.print("-");
         System.out.println();
     }
     //method to printf heading
+
+    /** This method is used whenever we want to display a string as a heading.
+     *
+     * @author Avishna
+     *
+     * @param title The hardcoded string that we want to display as heading
+     */
     public static void printHeading(String title) {
         printSeperator(30);
         System.out.println(title);
         printSeperator(30);
     }
     //method to stop the game until user enters anything, so that user can get time to read the console
+
+    /**
+     * This method is used to enter any integer or number
+     * Input one value at a time
+     * @author Avishna
+     */
     public static void anythingToContinue() {
         System.out.println("\nEnter anything to continue : ");
         scanner.next();
     }
+
+    /**
+     *This method is used to start the game.
+     * We need to input our name, and we can change our name if it is incorrect.
+     * It creates a player object and set isRunning to true for the gameLoop to continue.
+     * It then calls the method gameLoop.
+     * @author Vaishnavi
+     */
     public static void startGame(){
         boolean nameSet=false;
         String name;
@@ -93,14 +146,23 @@ public class GameLogic {
         gameLoop();
     }
 
+    public static int encounternum=0;
     //change game's values based on player xp
+
+    /**
+     * This method enables us to level up in the game.
+     * @author Avishna
+     */
     public static void checkAct() {
         //change acts based on xp
-        if (player.xp >= 10 && act == 1) {
+        //level up
+        if (encounternum == 1 && act == 1) {
+            encounternum=0;
             //increment act and place;
             act = 2;
             place = 1;
             //story
+            System.out.println("Congratulations, you have move on to Level 2!");
             Story.printFirstActOutro();
             //let player level up
             player.chooseTrait();
@@ -118,10 +180,12 @@ public class GameLogic {
             encounters[2] = "Battle";
             encounters[3] = "Rest";
             encounters[4] = "Shop";
-        } else if (player.xp >= 50 && act == 2){
+        } else if (encounternum == 1 && act == 2){
+            encounternum=0;
             //increment act and place
             act = 3;
             place = 2;
+            System.out.println("Congratulations, you have move on to Level 3!");
             Story.printSecondActOutro();
             //level up
             player.chooseTrait();
@@ -141,11 +205,13 @@ public class GameLogic {
             encounters[4] = "Shop";
             //fully heal player
             player.hp = player.maxHp;
-        }else if (player.xp >= 100 && act == 3) {
+        }else if (encounternum == 2 && act == 3) {
+            encounternum=0;
             //increment act and place
             act = 4;
             place = 3;
             //story
+            System.out.println("Congratulations, you have move on to Level 4!");
             Story.printThirdActOutro();
             //level up
             player.chooseTrait();
@@ -157,6 +223,11 @@ public class GameLogic {
             finalBattle();
         }
     }
+
+    /**
+     *  This method which presents a random encounter to the player. eg fight, rests or shop
+     *  @author Avishna
+     */
 
     public static void randomEncounter() {
         //rand num between 0 and length of encounters array
@@ -227,15 +298,26 @@ public class GameLogic {
     }
     //method gameLoop
 
+    /**
+     * This method is for the final battle. The enemy that the player has to fight is The evil emperor
+     * @author Yashi
+     */
     //the final(last) battle of the entire game
     public static void finalBattle() {
         //creating the evil emperor and letting the player fight against him
         battle(new Enemy("THE EVIL EMPEROR", 300));
         //printing the proper ending
+        if(encounternum==1)
+        {
         Story.printEnd(player);
+        }
         isRunning = false;
     }
 
+    /**
+     * This method is to display a message to indicate that the player died in case he was defeated by the enemy
+     * @author Yashi
+     */
     public static void playerDied() {
         clearConsole();
         printHeading("You died...");
@@ -243,7 +325,10 @@ public class GameLogic {
         System.out.println("Thank you for playing. I hope you enjoyed");
         isRunning=false;
     }
-
+    /**
+     * This method is called when the player meets a mysterious stranger from whom he can shop potions only if he has enough gold.
+     * @author Yashi
+     */
     public static void shop() {
         clearConsole();
         printHeading("You meet a mysterious stranger.\nHe offers you something!");
@@ -267,7 +352,10 @@ public class GameLogic {
         }
     }
 
-    //taking a rest
+    /**
+     * This method asks the player if he is willing to take a rest. If player's health is full, and he wants to take rest, he will not be able to take rest. If he is not at full health and wishes to take rest, he will be allowed to do so. If he chooses not to take rest, he will continue to play.
+     * @author Yashi
+     */
     public static void takeRest() {
         clearConsole();
         if (player.restsLeft >= 1) {
@@ -287,13 +375,19 @@ public class GameLogic {
                     System.out.println("You're now at " + player.hp + "/" + player.maxHp + " health.");
                     player.restsLeft--;
                // }
-            } else
-                System.out.println("Let's continue to play then");
+            } else if ((input==1)&&(player.hp == player.maxHp)) {
+                System.out.println("Your health is at its maximum, you are fit to fight!");
+            }
+            else
+                System.out.println("Let's continue to play then!");
             anythingToContinue();
         }
     }
 
-    //create a random battle with a random enemy
+    /**
+     * This method is creating a battle with a random enemy.
+     * @author Yashi
+     */
     public static void randomBattle() {
         clearConsole();
         printHeading("You encountered an evil minded creature. You'll have to fight it!");
@@ -302,7 +396,14 @@ public class GameLogic {
         battle(new Enemy(enemies[(int) (Math.random() * enemies.length)], player.xp));
     }
 
-    //create a main battle method
+    /**
+     * This method will give the player the option to fight, use potion or run away from encountered enemy.
+     * If player chooses to fight, the damage caused by the enemy and  to the enemy will be accounted.
+     * If he chooses to use potion, he will be able to use it only if he possesses any.
+     * If he chooses to run away, he might deal with damage from the enemy
+     * @param enemy It takes the random enemy generated from randomBattle, and for finalBattle it will take THE EVIL EMPEROR.
+     * @author Yashi
+     */
     public static void battle(Enemy enemy) {
         //main battle loop
         while (true) {
@@ -342,6 +443,7 @@ public class GameLogic {
                 } else if (enemy.hp <= 0) {
                     //tell the player he won
                     clearConsole();
+                    encounternum++;
                     printHeading("You defeated the " + enemy.name + "!");
                     //increase player xp
                     player.xp += enemy.xp;
@@ -358,6 +460,7 @@ public class GameLogic {
                         player.gold += goldEarned;
                         System.out.println("You collect " + goldEarned + " gold from the " + enemy.name + "'s corpse");
                     }
+                    //encounternum++;
                     anythingToContinue();
                     break;
                 }
@@ -381,6 +484,9 @@ public class GameLogic {
                 } else {
                     //player CANNOT take a potion
                     printHeading("You don't have any potions or you're at full health.");
+                    System.out.println("HP: "+player.hp + "/" + player.maxHp);
+                    printSeperator(20);
+                    System.out.println("Number of Potions: " + player.pots);
                     anythingToContinue();
                 }
             } else {
