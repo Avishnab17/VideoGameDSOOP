@@ -1,7 +1,12 @@
 package videogame.main;
 import java.util.Scanner;
 
-//
+/**
+ * This class is the main class for building the whole game
+ *
+ * @author Bootun Doorgeshwaree(Avishna),Dookheet Vaishnavi, Joyseeree Vrisht-Raaj(Ryan), Munogee Nayurvi
+ *
+ */
 public class GameLogic {
     static Scanner scanner = new Scanner(System.in);
     static Player player;
@@ -14,6 +19,17 @@ public class GameLogic {
     //story elements
     public static String[] places = {"Everlasting Mountains", "Haunted Landlines", "Castle of the Evil Emperor", "Throne Room"};
     //method readInt
+
+    /**
+     * This method is for reading the input of the user prompting him to enter an integer.
+     * It is called in other methods where the user will use it to proceed with the game.
+     *
+     * @author Avishna
+     *
+     * @param prompt It is the input of the user which will be stored in string format. It represents the choice of the user
+     * @param userChoices the number of choices will be hardcoded through the game when calling the method
+     * @return The choice of the user in integer format
+     */
     public static int readInt(String prompt, int userChoices) {
         int input;
 
@@ -29,17 +45,40 @@ public class GameLogic {
         return input;
     }
     //method clearConsole
+
+    /**
+     * This is a simple method for display purposes.
+     * It prints a lot of 100 lines in the terminal whenever the method is called
+     *
+     * @author Avishna
+     *
+     */
     public static void clearConsole() {
         for (int i = 0; i < 100; i++)
             System.out.println();
     }
     //print separator
+
+    /**
+     * This is a method to display a line of dashes whenever it is called.
+     *
+     * @author Avishna
+     *
+     * @param n It is the number of dashes
+     */
     public static void printSeperator(int n) {
         for (int i = 0; i < n; i++)
             System.out.print("-");
         System.out.println();
     }
     //method to printf heading
+
+    /** This method is used whenever we want to display a string as a heading.
+     *
+     * @author Avishna
+     *
+     * @param title The hardcoded string that we want to display as heading
+     */
     public static void printHeading(String title) {
         printSeperator(30);
         System.out.println(title);
