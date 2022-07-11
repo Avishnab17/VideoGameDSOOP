@@ -20,7 +20,9 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT I -INTRO");
         GameLogic.printSeperator(30);
-        System.out.println();
+        System.out.println("You are in " + GameLogic.places[GameLogic.place] + ", a region known to be commuted by monster weaklings and newborns.\n");
+        System.out.println("Today is great day for a pre-emptive strike on the monster population count! - " + GameLogic.player.name +"\n");
+        System.out.println("You set to continue on your journey ahead, with a mean right hook and smug face.\n");
         GameLogic.anythingToContinue();
     }
     public static void printFirstActOutro()
@@ -29,7 +31,9 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT I -OUTRO");
         GameLogic.printSeperator(30);
-        System.out.println("-");
+        System.out.println("The blood-sucking parasite NiddHogg has been sent to a new Hell, the blood sacrifices on the village will now cease!\n");
+        System.out.println("However, you do not share the same feelings as the village people.\n");
+        System.out.println("Revenge is your hindsight, and anyone in the way shall accordingly be crushed, monster or not.\n");
         GameLogic.anythingToContinue();
     }
     public static void printSecondActIntro()
