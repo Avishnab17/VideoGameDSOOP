@@ -1,6 +1,6 @@
 package videogame.main;
 
-/***
+/**
  * This class is extended from character.
  * @author Vrisht-Raaj
  */
@@ -11,7 +11,7 @@ public class Enemy extends Character{
 
   //Enemy-specific constructor
 
-    /***
+    /**
      * This is an enemy specific constructor
      * It calculates the experience point of the enemy at random
      * @author Vrisht Raaj
@@ -27,7 +27,7 @@ public class Enemy extends Character{
 
   //Enemy specific attack and defense calculations
 
-    /***
+    /**
      * This method is used to calculate how much attack the enemy made to the player.
      * @author Vrisht Raaj
      * @return a random value
@@ -38,7 +38,7 @@ public class Enemy extends Character{
       return (int) (Math.random()*(playerXp/3 + 7) + xp/3 + 7);
   }
 
-    /***
+    /**
      * This method is used to calculate how much the enemy has defended himself
      * @author Vrisht Raaj
      * @return a random value
