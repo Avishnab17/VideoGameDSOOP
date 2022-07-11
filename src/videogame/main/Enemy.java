@@ -31,6 +31,7 @@ public class Enemy extends Character{
      * This method is used to calculate how much attack the enemy made to the player.
      * @author Vrisht Raaj
      * @return a random value
+     *
      */
   @Override
   public int attack(){
