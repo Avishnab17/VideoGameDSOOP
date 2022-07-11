@@ -242,7 +242,11 @@ public class GameLogic {
         }
     }
 
-
+    /**
+     * method continueJourney() will generate random encounters for the player to defeat.
+     * If enough enemies are defeated, player is taken to the next stage/level/act.
+     * @author
+     */
     //method to continue journey
     public static void continueJourney() {
         //check if act must be increased
@@ -252,6 +256,11 @@ public class GameLogic {
             randomEncounter();
     }
 
+    /**
+     * method characterInfo() gives the player the option to see their current inventory and statistics
+     * such as current health, available currency(gold), number of consumables and XP.
+     * @author
+     */
     public static void characterInfo(){
         clearConsole();
         printHeading("CHARACTER INFO");
@@ -275,6 +284,11 @@ public class GameLogic {
         anythingToContinue();
     }
 
+    /**
+     * method printMenu() will print the main menu options.
+     * Options such as continuing, exiting the game or displaying character information.
+     * @author
+     */
     public static void printMenu() {
         clearConsole();
         printHeading(places[place]);
@@ -284,6 +298,12 @@ public class GameLogic {
         System.out.println("(2) Character Information");
         System.out.println("(3) Exit Game");
     }
+
+    /**
+     *method gameLoop() will either keep the game running, display character information or exit.
+     * This depends on user input and any option can be accessed anytime.
+     * @author
+     */
     public static void gameLoop() {
         while(isRunning) {
             printMenu();

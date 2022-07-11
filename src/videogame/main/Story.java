@@ -1,6 +1,18 @@
 package videogame.main;
 
+/**
+ * The Story class will tell the tale of the game through text
+ * There are several stages each with their introduction and conclusions
+ * There will a small text printed at each of these intervals to give the player some plot insight
+ * @author
+ */
+
 public class Story {
+
+    /**
+     * method printIntro() will print the story prologue.
+     * @author
+     */
     public static void printIntro()
     {
         GameLogic.clearConsole();
@@ -14,6 +26,11 @@ public class Story {
         System.out.println("You may not be the hero the Dorsians seek, b ut your lust for vengeance must be quelled, for it is monsters that took from you your beloved, Sindel.");
         GameLogic.anythingToContinue();
     }
+
+    /**
+     * method printFirstActIntro() will print the story for the beginning of the first act.
+     * @author
+     */
     public static void printFirstActIntro()
     {
         GameLogic.clearConsole();
@@ -25,6 +42,11 @@ public class Story {
         System.out.println("You set to continue on your journey ahead, with a mean right hook and smug face.\n");
         GameLogic.anythingToContinue();
     }
+
+    /**
+     * method printFirstActOutro() will print the story for the end of the first act.
+     * @author
+     */
     public static void printFirstActOutro()
     {
         GameLogic.clearConsole();
@@ -36,6 +58,11 @@ public class Story {
         System.out.println("Revenge is your hindsight, and anyone in the way shall accordingly be crushed, monster or not.\n");
         GameLogic.anythingToContinue();
     }
+
+    /**
+     * method printSecondActOutro() will print the story for the beginning of the second act.
+     * @author
+     */
     public static void printSecondActIntro()
     {
         GameLogic.clearConsole();
@@ -46,6 +73,10 @@ public class Story {
         GameLogic.anythingToContinue();
     }
 
+    /**
+     * method printSecondActOutro() will print the story for the end of the second act.
+     * @author
+     */
     public static void printSecondActOutro()
     {
         GameLogic.clearConsole();
@@ -56,6 +87,10 @@ public class Story {
         GameLogic.anythingToContinue();
     }
 
+    /**
+     * method printThirdActIntro() will print the story for the beginning of the third act.
+     * @author
+     */
     public static void printThirdActIntro()
     {
         GameLogic.clearConsole();
@@ -65,6 +100,11 @@ public class Story {
         System.out.println("-");
         GameLogic.anythingToContinue();
     }
+
+    /**
+     * method printThirdActOutro() will print the story for the end of the third act.
+     * @author
+     */
     public static void printThirdActOutro()
     {
         GameLogic.clearConsole();
@@ -74,6 +114,11 @@ public class Story {
         System.out.println("-");
         GameLogic.anythingToContinue();
     }
+
+    /**
+     * method printFourthActIntro() will print the story for the beginning of the last act.
+     * @author
+     */
     public static void printFourthActIntro()
     {
         GameLogic.clearConsole();
@@ -83,6 +128,11 @@ public class Story {
         System.out.println("-");
         GameLogic.anythingToContinue();
     }
+
+    /**
+     * method printFirstActIntro() will print the ending tale and credits.
+     * @author
+     */
     public static void printEnd(Player player)
     {
         GameLogic.clearConsole();
