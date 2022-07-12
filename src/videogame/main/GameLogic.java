@@ -436,7 +436,7 @@ public class GameLogic {
             printHeading(player.name + "\nnHP: " + player.hp + "/" + player.maxHp);
             System.out.println("Choose an action:");
             printSeperator(20);
-            System.out.println("(1) Fight\n(2) Use Potion\n(3) Run Away\n(4) Fireball");
+            System.out.println("(1) Fight\n(2) Use Potion\n(3) Run Away\n(4) Judgement");
             int input = readInt("-> ", 4);
             //react accordingly to player input
             if (input == 1) {
