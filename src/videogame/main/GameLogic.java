@@ -8,6 +8,7 @@ import java.util.Scanner;
  *
  */
 public class GameLogic {
+
     static Scanner scanner = new Scanner(System.in);
     static Player player;
     public static boolean isRunning;
@@ -149,8 +150,11 @@ public class GameLogic {
         gameLoop();
     }
 
-    public static int encounternum=0;
-    //change game's values based on player xp
+    public static int FirstBossDefeated = 0;
+    public static int SecondBossDefeated = 0;
+    public static int ThirdBossDefeated = 0;
+    public static int encounternum = 0; //change game's values based on player xp
+
 
     /**
      * This method enables us to level up in the game.
@@ -160,70 +164,88 @@ public class GameLogic {
         //change acts based on xp
         //level up
         if (encounternum == 1 && act == 1) {
-            encounternum=0;
-            //increment act and place;
-            act = 2;
-            place = 1;
-            //story
-            System.out.println("Congratulations, you have move on to Level 2!");
-            Story.printFirstActOutro();
-            //let player level up
-            player.chooseTrait();
-            //story
-            Story.printSecondActIntro();
-            //assign new values to enemy
-            enemies[0] = "Evil Mercenary";
-            enemies[1] = "Goblin";
-            enemies[2] = "Wolves Pack";
-            enemies[3] = "Henchman of the Evil Emperor";
-            enemies[4] = "Scary Stranger";
-            //assign encounter values
-            encounters[0] = "Battle";
-            encounters[1] = "Battle";
-            encounters[2] = "Battle";
-            encounters[3] = "Rest";
-            encounters[4] = "Shop";
+            if(FirstBossDefeated == 0) {
+                encounternum = 0;
+                FirstActBoss();
+            }
+            else {
+                encounternum = 0;
+                //increment act and place;
+                act = 2;
+                place = 1;
+                //story
+                Story.printFirstActOutro();
+                System.out.println("\nCongratulations, you have moved on to Level 2!");
+                //let player level up
+                player.chooseTrait();
+                //story
+                Story.printSecondActIntro();
+                //assign new values to enemy
+                enemies[0] = "Evil Mercenary";
+                enemies[1] = "Goblin";
+                enemies[2] = "Wolves Pack";
+                enemies[3] = "Henchman of the Evil Emperor";
+                enemies[4] = "Scary Stranger";
+                //assign encounter values
+                encounters[0] = "Battle";
+                encounters[1] = "Battle";
+                encounters[2] = "Battle";
+                encounters[3] = "Rest";
+                encounters[4] = "Shop";
+            }
         } else if (encounternum == 1 && act == 2){
-            encounternum=0;
-            //increment act and place
-            act = 3;
-            place = 2;
-            System.out.println("Congratulations, you have move on to Level 3!");
-            Story.printSecondActOutro();
-            //level up
-            player.chooseTrait();
-            //Story
-            Story.printThirdActIntro();
-            //assign new values to enemy
-            enemies[0] = "Evil Mercenary";
-            enemies[1] = "Evil Mercenary";
-            enemies[2] = "Henchman of the Evil Emperor";
-            enemies[3] = "Henchman of the Evil Emperor";
-            enemies[4] = "Henchman of the Evil Emperor";
-            //assign encounter values
-            encounters[0] = "Battle";
-            encounters[1] = "Battle";
-            encounters[2] = "Battle";
-            encounters[3] = "Battle";
-            encounters[4] = "Shop";
-            //fully heal player
-            player.hp = player.maxHp;
-        }else if (encounternum == 2 && act == 3) {
-            encounternum=0;
-            //increment act and place
-            act = 4;
-            place = 3;
-            //story
-            System.out.println("Congratulations, you have move on to Level 4!");
-            Story.printThirdActOutro();
-            //level up
-            player.chooseTrait();
-            //story
-            Story.printFourthActIntro();
-            //fully heal the player
-            player.hp = player.maxHp;
-            //calling last battle
-            finalBattle();
+            if(SecondBossDefeated == 0) {
+                encounternum = 0;
+                SecondActBoss();
+            }
+            else {
+                encounternum = 0;
+                //increment act and place
+                act = 3;
+                place = 2;
+                Story.printSecondActOutro();
+                System.out.println("\nCongratulations, you have moved on to Level 3!");
+                //level up
+                player.chooseTrait();
+                //Story
+                Story.printThirdActIntro();
+                //assign new values to enemy
+                enemies[0] = "Evil Mercenary";
+                enemies[1] = "Evil Mercenary";
+                enemies[2] = "Henchman of the Evil Emperor";
+                enemies[3] = "Henchman of the Evil Emperor";
+                enemies[4] = "Henchman of the Evil Emperor";
+                //assign encounter values
+                encounters[0] = "Battle";
+                encounters[1] = "Battle";
+                encounters[2] = "Battle";
+                encounters[3] = "Battle";
+                encounters[4] = "Shop";
+                //fully heal player
+                player.hp = player.maxHp;
+            }
+        }else if (encounternum == 1 && act == 3) {
+            if(ThirdBossDefeated == 0) {
+                encounternum = 0;
+                ThirdActBoss();
+            }
+            else {
+                encounternum = 0;
+                //increment act and place
+                act = 4;
+                place = 3;
+                //story
+                System.out.println("Congratulations, you have moved on to Level 4!");
+                Story.printThirdActOutro();
+                //level up
+                player.chooseTrait();
+                //story
+                Story.printFourthActIntro();
+                //fully heal the player
+                player.hp = player.maxHp;
+                //calling last battle
+                finalBattle();
+            }
         }
     }
 
@@ -255,7 +277,7 @@ public class GameLogic {
         //check if act must be increased
         checkAct();
         //check if game is in last act
-        if (act != 4)
+        if (encounternum < 1)
             randomEncounter();
     }
 
@@ -303,7 +325,7 @@ public class GameLogic {
     }
 
     /**
-     *method gameLoop() will either keep the game running, display character information or exit.
+     * method gameLoop() will either keep the game running, display character information or exit.
      * This depends on user input and any option can be accessed anytime.
      * @author Avishna
      */
@@ -321,6 +343,33 @@ public class GameLogic {
     }
     //method gameLoop
 
+    //----------------------------------------------------------------------------------------------------------------------------
+    //New!the final(last) battle of the entire game
+    public static void FirstActBoss() {
+        //creating the evil emperor and letting the player fight against him
+        battle(new Enemy("NiddHogg", 25));
+        FirstBossDefeated = 1;
+
+    }
+
+    //New!!the final(last) battle of the entire game
+    public static void SecondActBoss() {
+        //creating the evil emperor and letting the player fight against him
+        battle(new Enemy("L'Agret du Regret", 30));
+        SecondBossDefeated = 1;
+
+    }
+
+    //New!!!the final(last) battle of the entire game
+    public static void ThirdActBoss() {
+        //creating the evil emperor and letting the player fight against him
+        battle(new Enemy("Evil Sindel", 35));
+        ThirdBossDefeated = 1;
+
+    }
+     //----------------------------------------------------------------------------------------------------------------------------
+
+
     /**
      * This method is for the final battle. The enemy that the player has to fight is The evil emperor
      * @author Yashi
@@ -328,7 +377,7 @@ public class GameLogic {
     //the final(last) battle of the entire game
     public static void finalBattle() {
         //creating the evil emperor and letting the player fight against him
-        battle(new Enemy("THE EVIL EMPEROR", 300));
+        battle(new Enemy("THE EVIL EMPEROR", 100));
         //printing the proper ending
         if(encounternum==1)
         {
@@ -456,9 +505,9 @@ public class GameLogic {
                 //print the info of this battle round
                 clearConsole();
                 printHeading("BATTLE");
-                System.out.println("You dealt " + dmg + " damage to the " + enemy.name + ".");
+                System.out.println("You dealt " + dmg + " damage to " + enemy.name + ".");
                 printSeperator(15);
-                System.out.println("The " + enemy.name + " dealt " + dmgTook + " damage to you.");
+                System.out.println(enemy.name + " dealt " + dmgTook + " damage to you.");
                 anythingToContinue();
 
                 //check if player is still alive or dead
@@ -469,7 +518,7 @@ public class GameLogic {
                     //tell the player he won
                     clearConsole();
                     encounternum++;
-                    printHeading("You defeated the " + enemy.name + "!");
+                    printHeading("You defeated " + enemy.name + "!");
                     //increase player xp
                     player.xp += enemy.xp;
                     System.out.println("You earned " + enemy.xp + "XP!");
@@ -485,7 +534,6 @@ public class GameLogic {
                         player.gold += goldEarned;
                         System.out.println("You collect " + goldEarned + " gold from the " + enemy.name + "'s corpse");
                     }
-                    //encounternum++;
                     anythingToContinue();
                     break;
                 }
@@ -517,7 +565,7 @@ public class GameLogic {
             } else if (input ==3){
                 //RUN AWAY
                 clearConsole();
-                if (act != 4) {
+                if (encounternum == 0) {   //*
                     //chance of 35% to escape
                     if (Math.random() * 10 + 1 <= 3.5) {
                         printHeading("You ran away from the " + enemy.name + "!");
@@ -535,7 +583,7 @@ public class GameLogic {
                     }
 
                 } else {
-                    printHeading("YOU CANNOT ESCAPE THE EVIL EMPEROR!!");
+                    printHeading("You cannot run away from a boss!");
                     anythingToContinue();
                 }
             }else if(input==4){
