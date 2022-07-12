@@ -69,7 +69,9 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT II -INTRO");
         GameLogic.printSeperator(30);
-        System.out.println("-");
+        System.out.println(GameLogic.places[GameLogic.place] + ", a place where people that once thought they could live free resided.\n");
+        System.out.println("Now their souls roam freely in these lands, always surveying for their next prey, looking to end their torment.\n");
+        System.out.println("Being a body replacement was unfortunately not something you eerily desired, however.");
         GameLogic.anythingToContinue();
     }
 
@@ -83,7 +85,8 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT II -OUTRO");
         GameLogic.printSeperator(30);
-        System.out.println("-");
+        System.out.println("The mushy mess of Juddecca's royal knight lay on the red-painted lands, soon to be lost forever to time, because nature doesn't sleep.\n");
+        System.out.println("His soul too shall eternally roam these lands");
         GameLogic.anythingToContinue();
     }
 
@@ -97,7 +100,10 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT III -INTRO");
         GameLogic.printSeperator(30);
-        System.out.println("-");
+        System.out.println("You've made your way to the"+ GameLogic.places[GameLogic.place] +", your revenge journey is almost coming to an end.\n");
+        System.out.println("As you step on these cursed lands, you feel an endearing presence nearby.\n");
+        System.out.println("This was the first time in a long time you felt an emotion this dense, ever since you held Sindel's dead body.\n");
+        System.out.println("You make your way inside, following this presence as it draws you....");
         GameLogic.anythingToContinue();
     }
 
@@ -111,7 +117,11 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT III -OUTRO");
         GameLogic.printSeperator(30);
-        System.out.println("-");
+        System.out.println("In your hands were again, your beloved, in her elegance but cold.\n");
+        System.out.println("The line between victory and defeat had blurred to non-existence.\n");
+        System.out.println("The emotion you felt was absolute rage, but it was also being quelled by the idea of a last chance to revive your fallen love.\n");
+        System.out.println("You knew, however, that it would not be possible. Nothing can reverse death, or memories of the past.\n");
+        System.out.println("You had to put an end to the use of such deceiving power, so you keep going, now set to kill the evil emperor.");
         GameLogic.anythingToContinue();
     }
 
@@ -125,7 +135,13 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT IV -INTRO");
         GameLogic.printSeperator(30);
-        System.out.println("-");
+        System.out.println("After mercilessly slaughtering the rest of the emperor's minions, you arrive at a gold and ruby-infused door.\n");
+        System.out.println("You take a small step backwards, then kick the door down with all your might.\n");
+        System.out.println("Behind laid another entity, in a magnanimous and unfazed stance, sitting on a chair of levitating souls.\n");
+        System.out.println("You already knew who it was....\n");
+        System.out.println("I've come to stop you sucking the air of this Earth, Juddecca! - "+ GameLogic.player.name + "\n");
+        System.out.println("He calmly gets a soul to lift him from his chair and says.......\n");
+        System.out.println("You.....will SUFFER!");
         GameLogic.anythingToContinue();
     }
 
@@ -137,9 +153,16 @@ public class Story {
     {
         GameLogic.clearConsole();
         GameLogic.printSeperator(30);
-        System.out.println("Congratulations, "+player.name +" defeated enemy ");
+        System.out.println("The evil emperor has finally been brought down!\n");
+        System.out.println("You draw your sword back from his unresponsive body.\n");
+        System.out.println("They say revenge is not the answer, and that it leaves you always dissatisfied.\n");
+        System.out.println("You leave the castle knowing that is nonsense. Seeing the emperor dead brought you peace and determination to keep on existing.\n");
+        System.out.println("You come back to the village to a grand welcoming feast and chants of name.\n");
+        System.out.println("'All hail " + GameLogic.player.name +"'! They all cheered.\n");
+        System.out.println("Maybe being a person of the people is not so bad and boring after all...\n");
+        System.out.println("Congratulations,you("+ player.name +") destroyed the EVIL EMPEROR!");
         GameLogic.printSeperator(30);
-        System.out.println("Hope you enjoyed it");
+        System.out.println("--------------------------END OF GAME--------------------------");
     }
 }
 
