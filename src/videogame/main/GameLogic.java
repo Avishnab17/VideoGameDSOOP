@@ -16,6 +16,10 @@ public class GameLogic {
     //enemy names
     public static String[] enemies = {"Ogre", "Ogre", "Goblin", "Goblin", "Stone Elemental"};
     public static int place = 0, act = 1;
+
+    public static int judgement = 2;
+
+
     //story elements
     public static String[] places = {"Everlasting Mountains", "Haunted Landlines", "Castle of the Evil Emperor", "Throne Room"};
     //method readInt
@@ -431,8 +435,8 @@ public class GameLogic {
             printHeading(player.name + "\nnHP: " + player.hp + "/" + player.maxHp);
             System.out.println("Choose an action:");
             printSeperator(20);
-            System.out.println("(1) Fight\n(2) Use Potion\n(3) Run Away");
-            int input = readInt("-> ", 3);
+            System.out.println("(1) Fight\n(2) Use Potion\n(3) Run Away\n(4) Fireball");
+            int input = readInt("-> ", 4);
             //react accordingly to player input
             if (input == 1) {
                 int dmg = player.attack() - enemy.defend();
@@ -455,6 +459,7 @@ public class GameLogic {
                 printSeperator(15);
                 System.out.println("The " + enemy.name + " dealt " + dmgTook + " damage to you.");
                 anythingToContinue();
+
                 //check if player is still alive or dead
                 if (player.hp <= 0) {
                     playerDied();//method to end the game
@@ -508,7 +513,7 @@ public class GameLogic {
                     System.out.println("Number of Potions: " + player.pots);
                     anythingToContinue();
                 }
-            } else {
+            } else if (input ==3){
                 //RUN AWAY
                 clearConsole();
                 if (act != 4) {
@@ -532,6 +537,41 @@ public class GameLogic {
                     printHeading("YOU CANNOT ESCAPE THE EVIL EMPEROR!!");
                     anythingToContinue();
                 }
+            }else if(input==4){
+
+                clearConsole();
+                if(judgement>0 && player.hp<player.maxHp){
+                    printHeading("Do you want to use Judgement?");
+                    System.out.println("(1) Yes\n(2) No, maybe later");
+                    input = readInt("-> ", 2);
+                      if(input==1 && enemy.hp>20) {
+                        System.out.println("You have " + judgement + " Judgement.");
+                        double v = enemy.hp * 0.9;
+                        int v1 = (int) v;
+                        enemy.hp = enemy.hp - v1;
+                        judgement--;
+                        System.out.println("You dealt " + v1 + " damage to the enemy.");
+                        System.out.println("The enemy's internal organs are now visible.");
+                        System.out.println("You have " + judgement + " Judgement left.");
+                        anythingToContinue();
+                      }
+
+                    }else{
+                        if(judgement<=0){
+                            System.out.println("You have no Judgement.");
+                        }
+                        else if(enemy.hp<=20){
+                            System.out.println("You cannot use a Judgement.\n Your enemy is already weak.");
+                        }
+                        else if(player.hp==player.maxHp){
+                            System.out.println("You are at full health.\n You don't need a Judgement.");
+                        }
+                        System.out.println("Continue your journey!!");
+                        anythingToContinue();
+                    }
+
+               // }
+                //anythingToContinue();
             }
         }
     }
