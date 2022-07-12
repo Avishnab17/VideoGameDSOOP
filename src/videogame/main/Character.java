@@ -35,8 +35,8 @@ public abstract class Character  //both player and enemy will inherit from
     }
 
     /**
-     * The attack method is found in both subclasses of Player and Java.
-     * This method is overridden in the Player and Java subclasses to inherit from subclass Character.
+     * The attack method is found in both subclasses of Player and Enemy.
+     * This method is overridden in the Player and Enemy subclasses to inherit from subclass Character.
      * The attack method is the rate at which the Character can attack as per its experience.
      *
      * @author Vaishnavi
@@ -45,8 +45,8 @@ public abstract class Character  //both player and enemy will inherit from
      */
     public abstract int attack();  //abstract and will be overwritten by the subclasses
     /**
-     * The defend method is found in both subclasses of Player and Java.
-     * This method is overridden in the Player and Java subclasses to inherit from subclass Character.
+     * The defend method is found in both subclasses of Player and Enemy.
+     * This method is overridden in the Player and Enemy subclasses to inherit from subclass Character.
      * The defend method is the rate at which the Character can defend as per its experience.
      *
      * @author Vaishnavi
