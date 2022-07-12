@@ -420,10 +420,11 @@ public class GameLogic {
     }
 
     /**
-     * This method will give the player the option to fight, use potion or run away from encountered enemy.
+     * This method will give the player the option to fight, use potion, run away from encountered enemy or Judgement.
      * If player chooses to fight, the damage caused by the enemy and  to the enemy will be accounted.
      * If he chooses to use potion, he will be able to use it only if he possesses any.
      * If he chooses to run away, he might deal with damage from the enemy
+     * if he chooses Judgement, he can cause massive damage to enemy
      * @param enemy It takes the random enemy generated from randomBattle, and for finalBattle it will take THE EVIL EMPEROR.
      * @author Yashi
      */
