@@ -87,8 +87,7 @@ public class GameLogic {
     //method to stop the game until user enters anything, so that user can get time to read the console
 
     /**
-     * This method is used to enter any integer or number
-     * Input one value at a time
+     * This method is used to enter takes any value from user.
      * @author Avishna
      */
     public static void anythingToContinue() {
