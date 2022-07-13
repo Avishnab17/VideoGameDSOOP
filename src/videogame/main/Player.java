@@ -47,7 +47,7 @@ public class Player extends Character { //inherit from superclass Character
     public int attack(){
 
         //  TODO Auto-generated method stub
-        return (int)(Math.random()*(xp/4 + numAtkUpgrades*4 + 3) + xp/10 + numAtkUpgrades*4 + numDefUpgrades + 1);
+        return (int)(Math.random()*(xp/4 + numAtkUpgrades*5 + 3) + xp/10 + numAtkUpgrades*5 + numDefUpgrades + 1);
     }
     /**
      * This method is overridden from character
@@ -58,7 +58,7 @@ public class Player extends Character { //inherit from superclass Character
     public int defend(){
 
         //  TODO Auto-generated method stub
-        return (int)(Math.random()*(xp/4 + numDefUpgrades*2 + 3) + xp/10 + numDefUpgrades*2 + numAtkUpgrades + 1);
+        return (int)(Math.random()*(xp/4 + numDefUpgrades*4 + 3) + xp/10 + numDefUpgrades*4 + numAtkUpgrades + 1);
     }
 
     /**
