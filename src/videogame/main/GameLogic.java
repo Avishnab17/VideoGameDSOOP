@@ -347,7 +347,8 @@ public class GameLogic {
     //New!the final(last) battle of the entire game
     public static void FirstActBoss() {
         //creating the evil emperor and letting the player fight against him
-        battle(new Enemy("NiddHogg", 25));
+     //   battle(new Enemy("NiddHogg", 25));
+        battle(new Enemy("NiddHogg",player.xp));
         FirstBossDefeated = 1;
 
     }
@@ -355,7 +356,8 @@ public class GameLogic {
     //New!!the final(last) battle of the entire game
     public static void SecondActBoss() {
         //creating the evil emperor and letting the player fight against him
-        battle(new Enemy("L'Agret du Regret", 30));
+       // battle(new Enemy("L'Agret du Regret", 30));
+        battle(new Enemy("L'Agret du Regret", player.xp*2/10));
         SecondBossDefeated = 1;
 
     }
@@ -363,7 +365,8 @@ public class GameLogic {
     //New!!!the final(last) battle of the entire game
     public static void ThirdActBoss() {
         //creating the evil emperor and letting the player fight against him
-        battle(new Enemy("Evil Sindel", 35));
+       // battle(new Enemy("Evil Sindel", 35));
+        battle(new Enemy("Evil Sindel", player.xp*3/10));
         ThirdBossDefeated = 1;
 
     }
@@ -377,7 +380,7 @@ public class GameLogic {
     //the final(last) battle of the entire game
     public static void finalBattle() {
         //creating the evil emperor and letting the player fight against him
-        battle(new Enemy("THE EVIL EMPEROR", 100));
+        battle(new Enemy("THE EVIL EMPEROR", 70));
         //printing the proper ending
         if(encounternum==1)
         {

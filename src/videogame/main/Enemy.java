@@ -35,7 +35,7 @@ public class Enemy extends Character{
      */
   @Override
   public int attack(){
-      return (int) (Math.random()*(playerXp/3 + 1) + xp/3 + 1);
+      return (int) (Math.random()*(playerXp/2 + 8) + xp/2 + 1);
   }
 
     /**
