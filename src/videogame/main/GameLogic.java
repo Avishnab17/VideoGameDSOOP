@@ -150,10 +150,10 @@ public class GameLogic {
         gameLoop();
     }
 
-    public static int FirstBossDefeated = 0;
-    public static int SecondBossDefeated = 0;
-    public static int ThirdBossDefeated = 0;
-    public static int ActiveBossFight = 0;
+    public static int FirstBossDefeated = 0; // Will flip to 1 when first boss fight is killed
+    public static int SecondBossDefeated = 0; // Will flip to 1 when second boss fight is killed
+    public static int ThirdBossDefeated = 0; // Will flip to 1 when third boss fight is killed
+    public static int ActiveBossFight = 0; // flips to 1 during a boss fight
     public static int encounternum = 0; //change game's values based on player xp
 
 
@@ -350,25 +350,53 @@ public class GameLogic {
     }
 
 
-
-
+    /**
+     * method FirstActBoss() calls the first enemy boss
+     * @author Vrisht-Raaj
+     */
     public static void FirstActBoss() {
+
+        System.out.println("\nReeking of disgust, your eyes then lay on something even nastier.\n");
+        System.out.println("An orange monster with three mouths and ten hands, going by the foul name of NiddHogg.\n");
+        System.out.println("------------!!! BOSS FIGHT !!!------------\n");
+        System.out.println("NiddHogg has appeared!\n");
         battle(new Enemy("NiddHogg", 5));
         FirstBossDefeated = 1;
         ActiveBossFight = 0;
 
     }
 
-
+    /**
+     * method SecondActBoss() calls the second enemy boss
+     * @author Vrisht-Raaj
+     */
     public static void SecondActBoss() {
+
+        System.out.println("\nAn intimidating figure walks towards you with a hoodie on.\n");
+        System.out.println("Once close, the presence reveals its true form, a humanoid with male attributes.\n");
+        System.out.println("Shiny forehead, almost reflecting the moonlight with blinding aura, appears to be able to repel any projectile.\n");
+        System.out.println("------------!!! BOSS FIGHT !!!------------\n");
+        System.out.println("L'Agret du Regret has appeared!\n");
         battle(new Enemy("L'Agret du Regret", 10));
         SecondBossDefeated = 1;
         ActiveBossFight = 0;
 
     }
 
-
+    /**
+     * method ThirdActBoss() calls the third enemy boss
+     * @author Vrisht-Raaj
+     */
     public static void ThirdActBoss() {
+        System.out.println("\nAn angelic female voice calls your name, fireflies buzz around you, seemingly wanting to show you a path...\n");
+        System.out.println("You follow the sweet sound and the line formed by the fireflies\n");
+        System.out.println("You finally reach the end to find a presence with their back turnt to you, with a female aura most would consider unparalleled.\n");
+        System.out.println("You immediately recognized the shape, and as she turnt her back, the illusion shattered...\n");
+        System.out.println("The fireflies vaporized, and the angelic voice bled of deception.\n");
+        System.out.println("It was Sindel's body, adulterated by a tormented soul.\n");
+        System.out.println("You know you have to defeat it, but hesitation weakens your grip.\n");
+        System.out.println("------------!!! BOSS FIGHT !!!------------\n");
+        System.out.println("Evil Sindel has appeared!\n");
         battle(new Enemy("Evil Sindel", 20));
         ThirdBossDefeated = 1;
         ActiveBossFight = 0;
