@@ -234,6 +234,7 @@ public class GameLogic {
                 ThirdActBoss();
             }
             else {
+                ActiveBossFight = 1;
                 encounternum = 0;
                 //increment act and place
                 act = 4;
