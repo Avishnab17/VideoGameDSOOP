@@ -113,10 +113,10 @@ public class GameLogic {
         //print title screen
         clearConsole();
         printSeperator(40);
-        printSeperator(30);
-        System.out.println(" AGE OF EVIL EMPEROR ");
-        System.out.println("HAVE FUN");
-        printSeperator(30);
+        printSeperator(40);
+        System.out.println(" \t\t~ AGE OF EVIL EMPEROR ~ ");
+        System.out.println("\t\t\t\tHAVE FUN!!");
+        printSeperator(40);
         printSeperator(40);
         anythingToContinue();
         // Get choice to change his name
@@ -296,19 +296,19 @@ public class GameLogic {
         clearConsole();
         printHeading("CHARACTER INFO");
         System.out.println("Name: " +player.name);
-        printSeperator(20);
+        printSeperator(30);
         System.out.println("HP: "+player.hp + "/" + player.maxHp);
-        printSeperator(20);
+        printSeperator(30);
         System.out.println("Experience: " + player.xp + "\tGold: " + player.gold);
-        printSeperator(20);
+        printSeperator(30);
         System.out.println("Number of Potions: " + player.pots);
-        printSeperator(20);
+        printSeperator(30);
         System.out.println("Number of Judgements: " + judgement);
-        printSeperator(20);
+        printSeperator(30);
         //Printing chosen traits
         if (player.numAtkUpgrades > 0) {
             System.out.println("Offensive trait: " + player.atkUpgrades[player.numAtkUpgrades - 1]);
-            printSeperator(20);
+            printSeperator(30);
         }
         if (player.numDefUpgrades > 0) {
             System.out.println("Defensive trait: " + player.defUpgrades[player.numDefUpgrades - 1]);
@@ -325,7 +325,7 @@ public class GameLogic {
         clearConsole();
         printHeading(places[place]);
         System.out.println("Choose an action:");
-        printSeperator(20);
+        printSeperator(30);
         System.out.println("(1) Continue on your Journey ");
         System.out.println("(2) Character Information");
         System.out.println("(3) Exit Game");
@@ -348,36 +348,33 @@ public class GameLogic {
                 isRunning = false;
         }
     }
-    //method gameLoop
 
-    //----------------------------------------------------------------------------------------------------------------------------
-    //New!the final(last) battle of the entire game
+
+
+
     public static void FirstActBoss() {
-        //creating the evil emperor and letting the player fight against him
         battle(new Enemy("NiddHogg", 5));
         FirstBossDefeated = 1;
         ActiveBossFight = 0;
 
     }
 
-    //New!!the final(last) battle of the entire game
+
     public static void SecondActBoss() {
-        //creating the evil emperor and letting the player fight against him
         battle(new Enemy("L'Agret du Regret", 10));
         SecondBossDefeated = 1;
         ActiveBossFight = 0;
 
     }
 
-    //New!!!the final(last) battle of the entire game
+
     public static void ThirdActBoss() {
-        //creating the evil emperor and letting the player fight against him
         battle(new Enemy("Evil Sindel", 20));
         ThirdBossDefeated = 1;
         ActiveBossFight = 0;
 
     }
-     //----------------------------------------------------------------------------------------------------------------------------
+
 
 
     /**
@@ -416,7 +413,7 @@ public class GameLogic {
         printHeading("You meet a mysterious stranger.\nHe offers you something!");
         int price = (int) (Math.random()* (10 + player.pots*3) + 10 + player.pots);
         System.out.println("- Magic Potion: " + price + " gold.");
-        printSeperator(20);
+        printSeperator(30);
         //ask player if he wants to buy one
         System.out.println("Do you want to buy one?\n(1)Yes!\n(2) No thanks.");
         int input = readInt("-> ", 2);
@@ -494,7 +491,7 @@ public class GameLogic {
             printHeading(enemy.name + "\nnHP: " + enemy.hp + "/" + enemy.maxHp);
             printHeading(player.name + "\nnHP: " + player.hp + "/" + player.maxHp);
             System.out.println("Choose an action:");
-            printSeperator(20);
+            printSeperator(30);
             System.out.println("(1) Fight\n(2) Use Potion\n(3) Run Away\n(4) Judgement");
             int input = readInt("-> ", 4);
             //react accordingly to player input
@@ -516,7 +513,7 @@ public class GameLogic {
                 clearConsole();
                 printHeading("BATTLE");
                 System.out.println("You dealt " + dmg + " damage to " + enemy.name + ".");
-                printSeperator(15);
+                printSeperator(30);
                 System.out.println(enemy.name + " dealt " + dmgTook + " damage to you.");
                 anythingToContinue();
 
@@ -568,7 +565,7 @@ public class GameLogic {
                     //player CANNOT take a potion
                     printHeading("You don't have any potions or you're at full health.");
                     System.out.println("HP: "+player.hp + "/" + player.maxHp);
-                    printSeperator(20);
+                    printSeperator(30);
                     System.out.println("Number of Potions: " + player.pots);
                     anythingToContinue();
                 }
