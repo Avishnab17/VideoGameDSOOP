@@ -58,7 +58,7 @@ public class Player extends Character { //inherit from superclass Character
     public int defend(){
 
         //  TODO Auto-generated method stub
-        return (int)(Math.random()*(xp/4 + numDefUpgrades*2 + 3) + xp/10 + numDefUpgrades*2 + numAtkUpgrades + 1);
+        return (int)(Math.random()*(xp/4 + numDefUpgrades*3 + 3) + xp/10 + numDefUpgrades*4 + numAtkUpgrades + 1);
     }
 
     /**
