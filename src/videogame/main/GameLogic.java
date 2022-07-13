@@ -153,6 +153,7 @@ public class GameLogic {
     public static int FirstBossDefeated = 0;
     public static int SecondBossDefeated = 0;
     public static int ThirdBossDefeated = 0;
+    public static int ActiveBossFight = 0;
     public static int encounternum = 0; //change game's values based on player xp
 
 
@@ -166,6 +167,7 @@ public class GameLogic {
         if (encounternum == 1 && act == 1) {
             if(FirstBossDefeated == 0) {
                 encounternum = 0;
+                ActiveBossFight = 1;
                 FirstActBoss();
             }
             else {
@@ -196,6 +198,7 @@ public class GameLogic {
         } else if (encounternum == 1 && act == 2){
             if(SecondBossDefeated == 0) {
                 encounternum = 0;
+                ActiveBossFight = 1;
                 SecondActBoss();
             }
             else {
@@ -227,6 +230,7 @@ public class GameLogic {
         }else if (encounternum == 1 && act == 3) {
             if(ThirdBossDefeated == 0) {
                 encounternum = 0;
+                ActiveBossFight = 1;
                 ThirdActBoss();
             }
             else {
@@ -277,8 +281,9 @@ public class GameLogic {
         //check if act must be increased
         checkAct();
         //check if game is in last act
-        if (encounternum < 1)
+        if ((encounternum == 0)&&(isRunning)) {
             randomEncounter();
+        }
     }
 
     /**
@@ -347,24 +352,27 @@ public class GameLogic {
     //New!the final(last) battle of the entire game
     public static void FirstActBoss() {
         //creating the evil emperor and letting the player fight against him
-        battle(new Enemy("NiddHogg", 25));
+        battle(new Enemy("NiddHogg", 5));
         FirstBossDefeated = 1;
+        ActiveBossFight = 0;
 
     }
 
     //New!!the final(last) battle of the entire game
     public static void SecondActBoss() {
         //creating the evil emperor and letting the player fight against him
-        battle(new Enemy("L'Agret du Regret", 30));
+        battle(new Enemy("L'Agret du Regret", 10));
         SecondBossDefeated = 1;
+        ActiveBossFight = 0;
 
     }
 
     //New!!!the final(last) battle of the entire game
     public static void ThirdActBoss() {
         //creating the evil emperor and letting the player fight against him
-        battle(new Enemy("Evil Sindel", 35));
+        battle(new Enemy("Evil Sindel", 20));
         ThirdBossDefeated = 1;
+        ActiveBossFight = 0;
 
     }
      //----------------------------------------------------------------------------------------------------------------------------
@@ -565,7 +573,7 @@ public class GameLogic {
             } else if (input ==3){
                 //RUN AWAY
                 clearConsole();
-                if (encounternum == 0) {   //*
+                if (ActiveBossFight == 0) {   //*
                     //chance of 35% to escape
                     if (Math.random() * 10 + 1 <= 3.5) {
                         printHeading("You ran away from the " + enemy.name + "!");

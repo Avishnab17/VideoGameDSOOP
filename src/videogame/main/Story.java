@@ -23,7 +23,7 @@ public class Story {
         System.out.println("Your clan is mostly recognized by the people of Dorsia, a town of fellow Indians, for fending off the fearsome monster invasion of 1939.\n");
         System.out.println("Nearly all monster species had been wiped out, or those that survived their numbers reduced to ridicule.\n");
         System.out.println("But that would not be their end, for the almighty monster deity Hell Judecca still drew breath, and could rebirth the numbers once again, as long as the blood of Dorsians could still be sacrificed.\n");
-        System.out.println("You may not be the hero the Dorsians seek, b ut your lust for vengeance must be quelled, for it is monsters that took from you your beloved, Sindel.");
+        System.out.println("You may not be the hero the Dorsians seek, but your lust for vengeance must be quelled, for it is monsters that took from you your beloved, Sindel.");
         GameLogic.anythingToContinue();
     }
 
@@ -86,7 +86,7 @@ public class Story {
         System.out.println("ACT II -OUTRO");
         GameLogic.printSeperator(30);
         System.out.println("The mushy mess of Juddecca's royal knight lay on the red-painted lands, soon to be lost forever to time, because nature doesn't sleep.\n");
-        System.out.println("His soul too shall eternally roam these lands");
+        System.out.println("His soul too shall eternally roam these lands...");
         GameLogic.anythingToContinue();
     }
 
