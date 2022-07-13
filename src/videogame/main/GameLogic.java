@@ -597,11 +597,11 @@ public class GameLogic {
             }else if(input==4){
 
                 clearConsole();
-                if(judgement>0 && player.hp<player.maxHp){
+                //if(judgement>0 && player.hp<player.maxHp){
                     printHeading("Do you want to use Judgement?");
                     System.out.println("(1) Yes\n(2) No, maybe later");
                     input = readInt("-> ", 2);
-                      if(input==1 && enemy.hp>20) {
+                      if(input==1 && enemy.hp>20 && judgement>0 && player.hp<player.maxHp) {
                         System.out.println("You have " + judgement + " Judgement.");
                         double v = enemy.hp * 0.9;
                         int v1 = (int) v;
@@ -612,12 +612,10 @@ public class GameLogic {
                         System.out.println("You have " + judgement + " Judgement left.");
                         anythingToContinue();
                       }
-
-                    }else{
-                        if(judgement<=0){
+                      else if(judgement==0){
                             System.out.println("You have no Judgement.");
                         }
-                        else if(enemy.hp<=20){
+                      else if(enemy.hp<=20){
                             System.out.println("You cannot use a Judgement.\n Your enemy is already weak.");
                         }
                         else if(player.hp==player.maxHp){
@@ -629,7 +627,7 @@ public class GameLogic {
 
                // }
                 //anythingToContinue();
-            }
+           // }
         }
     }
 
