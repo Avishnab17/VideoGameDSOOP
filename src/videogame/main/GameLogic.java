@@ -18,7 +18,7 @@ public class GameLogic {
     public static String[] enemies = {"Ogre", "Ogre", "Goblin", "Goblin", "Stone Elemental"};
     public static int place = 0, act = 1;
 
-    public static int judgement = 2;
+    public static int judgement = 5;
 
 
     //story elements
@@ -41,7 +41,7 @@ public class GameLogic {
         do {
             System.out.println(prompt);
             try{
-                input = Integer.parseInt(scanner.next()); //next reads whatever user inputs,it will be in string format, so we use Integer.parseInt to convert it to integer
+                input = Integer.parseInt(scanner.next());//convert string to integer and returns a random value
             }catch(Exception e){  //if any error occurs, we set our input to -1 and print the message.
                 input = -1;
                 System.out.println("Please enter an integer!");
@@ -303,7 +303,8 @@ public class GameLogic {
         printSeperator(20);
         System.out.println("Number of Potions: " + player.pots);
         printSeperator(20);
-
+        System.out.println("Number of Judgements: " + judgement);
+        printSeperator(20);
         //Printing chosen traits
         if (player.numAtkUpgrades > 0) {
             System.out.println("Offensive trait: " + player.atkUpgrades[player.numAtkUpgrades - 1]);
@@ -586,6 +587,7 @@ public class GameLogic {
                         int dmgTook = enemy.attack();
                         System.out.println("In your hurry you took " + dmgTook + " damage!");
                         anythingToContinue();
+                        player.hp-=dmgTook;
                         //check if player's still alive
                         if (player.hp <= 0)
                             playerDied();
@@ -598,7 +600,6 @@ public class GameLogic {
             }else if(input==4){
 
                 clearConsole();
-                //if(judgement>0 && player.hp<player.maxHp){
                     printHeading("Do you want to use Judgement?");
                     System.out.println("(1) Yes\n(2) No, maybe later");
                     input = readInt("-> ", 2);
