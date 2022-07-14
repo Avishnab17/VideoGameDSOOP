@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"videogame.main","l":"Character"},{"p":"videogame.main","l":"Enemy"},{"p":"videogame.main","l":"GameLogic"},{"p":"videogame.main","l":"Main"},{"p":"videogame.main","l":"Player"},{"p":"videogame.main","l":"Story"}];updateSearchResults();
