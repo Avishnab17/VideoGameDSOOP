@@ -326,8 +326,8 @@ public class GameLogic {
         printHeading(places[place]);
         System.out.println("Choose an action:");
         printSeperator(30);
-        System.out.println("(1) Continue on your Journey ");
-        System.out.println("(2) Character Information");
+        System.out.println("(1) Continue with the Game");
+        System.out.println("(2) Current condition of Character");
         System.out.println("(3) Exit Game");
     }
 
@@ -520,7 +520,7 @@ public class GameLogic {
             printHeading(player.name + "\nnHP: " + player.hp + "/" + player.maxHp);
             System.out.println("Choose an action:");
             printSeperator(30);
-            System.out.println("(1) Fight\n(2) Use Potion\n(3) Run Away\n(4) Judgement");
+            System.out.println("(1) Fight\n(2) Drink Potion\n(3) Run Away\n(4) Judgement");
             int input = readInt("-> ", 4);
             //react accordingly to player input
             if (input == 1) {
