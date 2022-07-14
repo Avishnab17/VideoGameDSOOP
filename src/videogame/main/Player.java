@@ -13,8 +13,8 @@ public class Player extends Character { //inherit from superclass Character
     int gold, restsLeft, pots;
 
     //Array to store skill names
-    public String[] atkUpgrades = {"Strength","Power","Might","Godlike Strength"};
-    public String[] defUpgrades = {"Heavy Bones","StoneSkin","Scale Armor","Holy Aura"};
+    public String[] atkUpgrades = {"Executioner","Power","Son of God","Godlike Strength"};
+    public String[] defUpgrades = {"Shield Knight","SteelSkin","Hedgehog","Divine Aura"};
 
     /**
      * This is player specific constructor.
