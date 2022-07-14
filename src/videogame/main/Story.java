@@ -4,14 +4,14 @@ package videogame.main;
  * The Story class will tell the tale of the game through text
  * There are several stages each with their introduction and conclusions
  * There will a small text printed at each of these intervals to give the player some plot insight
- * @author
+ * @author Vaishnavi
  */
 
 public class Story {
 
     /**
      * method printIntro() will print the story prologue.
-     * @author
+     * @author Vaishnavi
      */
     public static void printIntro()
     {
@@ -29,7 +29,7 @@ public class Story {
 
     /**
      * method printFirstActIntro() will print the story for the beginning of the first act.
-     * @author
+     * @author Vaishnavi
      */
     public static void printFirstActIntro()
     {
@@ -45,7 +45,7 @@ public class Story {
 
     /**
      * method printFirstActOutro() will print the story for the end of the first act.
-     * @author
+     * @author Vaishnavi
      */
     public static void printFirstActOutro()
     {
@@ -61,7 +61,7 @@ public class Story {
 
     /**
      * method printSecondActOutro() will print the story for the beginning of the second act.
-     * @author
+     * @author Vaishnavi
      */
     public static void printSecondActIntro()
     {
@@ -77,7 +77,7 @@ public class Story {
 
     /**
      * method printSecondActOutro() will print the story for the end of the second act.
-     * @author
+     * @author Vaishnavi
      */
     public static void printSecondActOutro()
     {
@@ -92,7 +92,7 @@ public class Story {
 
     /**
      * method printThirdActIntro() will print the story for the beginning of the third act.
-     * @author
+     * @author Vaishnavi
      */
     public static void printThirdActIntro()
     {
@@ -100,7 +100,7 @@ public class Story {
         GameLogic.printSeperator(30);
         System.out.println("ACT III -INTRO");
         GameLogic.printSeperator(30);
-        System.out.println("You've made your way to the"+ GameLogic.places[GameLogic.place] +", your revenge journey is almost coming to an end.\n");
+        System.out.println("You've made your way to the "+ GameLogic.places[GameLogic.place] +", your revenge journey is almost coming to an end.\n");
         System.out.println("As you step on these cursed lands, you feel an endearing presence nearby.\n");
         System.out.println("This was the first time in a long time you felt an emotion this dense, ever since you held Sindel's dead body.\n");
         System.out.println("You make your way inside, following this presence as it draws you....");
@@ -109,7 +109,7 @@ public class Story {
 
     /**
      * method printThirdActOutro() will print the story for the end of the third act.
-     * @author
+     * @author Vaishnavi
      */
     public static void printThirdActOutro()
     {
@@ -127,7 +127,7 @@ public class Story {
 
     /**
      * method printFourthActIntro() will print the story for the beginning of the last act.
-     * @author
+     * @author Vaishnavi
      */
     public static void printFourthActIntro()
     {
@@ -147,7 +147,7 @@ public class Story {
 
     /**
      * method printFirstActIntro() will print the ending tale and credits.
-     * @author
+     * @author Vaishnavi
      */
     public static void printEnd(Player player)
     {

@@ -113,10 +113,10 @@ public class GameLogic {
         //print title screen
         clearConsole();
         printSeperator(40);
-        printSeperator(30);
-        System.out.println(" AGE OF EVIL EMPEROR ");
-        System.out.println("HAVE FUN");
-        printSeperator(30);
+        printSeperator(40);
+        System.out.println(" \t\t~ AGE OF EVIL EMPEROR ~ ");
+        System.out.println("\t\t\t\tHAVE FUN!!");
+        printSeperator(40);
         printSeperator(40);
         anythingToContinue();
         // Get choice to change his name
@@ -150,10 +150,10 @@ public class GameLogic {
         gameLoop();
     }
 
-    public static int FirstBossDefeated = 0;
-    public static int SecondBossDefeated = 0;
-    public static int ThirdBossDefeated = 0;
-    public static int ActiveBossFight = 0;
+    public static int FirstBossDefeated = 0; // Will flip to 1 when first boss fight is killed
+    public static int SecondBossDefeated = 0; // Will flip to 1 when second boss fight is killed
+    public static int ThirdBossDefeated = 0; // Will flip to 1 when third boss fight is killed
+    public static int ActiveBossFight = 0; // flips to 1 during a boss fight
     public static int encounternum = 0; //change game's values based on player xp
 
 
@@ -296,19 +296,19 @@ public class GameLogic {
         clearConsole();
         printHeading("CHARACTER INFO");
         System.out.println("Name: " +player.name);
-        printSeperator(20);
+        printSeperator(30);
         System.out.println("HP: "+player.hp + "/" + player.maxHp);
-        printSeperator(20);
+        printSeperator(30);
         System.out.println("Experience: " + player.xp + "\tGold: " + player.gold);
-        printSeperator(20);
+        printSeperator(30);
         System.out.println("Number of Potions: " + player.pots);
-        printSeperator(20);
+        printSeperator(30);
         System.out.println("Number of Judgements: " + judgement);
-        printSeperator(20);
+        printSeperator(30);
         //Printing chosen traits
         if (player.numAtkUpgrades > 0) {
             System.out.println("Offensive trait: " + player.atkUpgrades[player.numAtkUpgrades - 1]);
-            printSeperator(20);
+            printSeperator(30);
         }
         if (player.numDefUpgrades > 0) {
             System.out.println("Defensive trait: " + player.defUpgrades[player.numDefUpgrades - 1]);
@@ -325,7 +325,7 @@ public class GameLogic {
         clearConsole();
         printHeading(places[place]);
         System.out.println("Choose an action:");
-        printSeperator(20);
+        printSeperator(30);
         System.out.println("(1) Continue on your Journey ");
         System.out.println("(2) Character Information");
         System.out.println("(3) Exit Game");
@@ -348,36 +348,61 @@ public class GameLogic {
                 isRunning = false;
         }
     }
-    //method gameLoop
 
-    //----------------------------------------------------------------------------------------------------------------------------
-    //New!the final(last) battle of the entire game
+
+    /**
+     * method FirstActBoss() calls the first enemy boss
+     * @author Vrisht-Raaj
+     */
     public static void FirstActBoss() {
-        //creating the evil emperor and letting the player fight against him
+
+        System.out.println("\nReeking of disgust, your eyes then lay on something even nastier.\n");
+        System.out.println("An orange monster with three mouths and ten hands, going by the foul name of NiddHogg.\n");
+        System.out.println("------------!!! BOSS FIGHT !!!------------\n");
+        System.out.println("NiddHogg has appeared!\n");
         battle(new Enemy("NiddHogg", 5));
         FirstBossDefeated = 1;
         ActiveBossFight = 0;
 
     }
 
-    //New!!the final(last) battle of the entire game
+    /**
+     * method SecondActBoss() calls the second enemy boss
+     * @author Vrisht-Raaj
+     */
     public static void SecondActBoss() {
-        //creating the evil emperor and letting the player fight against him
+
+        System.out.println("\nAn intimidating figure walks towards you with a hoodie on.\n");
+        System.out.println("Once close, the presence reveals its true form, a humanoid with male attributes.\n");
+        System.out.println("Shiny forehead, almost reflecting the moonlight with blinding aura, appears to be able to repel any projectile.\n");
+        System.out.println("------------!!! BOSS FIGHT !!!------------\n");
+        System.out.println("L'Agret du Regret has appeared!\n");
         battle(new Enemy("L'Agret du Regret", 10));
         SecondBossDefeated = 1;
         ActiveBossFight = 0;
 
     }
 
-    //New!!!the final(last) battle of the entire game
+    /**
+     * method ThirdActBoss() calls the third enemy boss
+     * @author Vrisht-Raaj
+     */
     public static void ThirdActBoss() {
-        //creating the evil emperor and letting the player fight against him
+        System.out.println("\nAn angelic female voice calls your name, fireflies buzz around you, seemingly wanting to show you a path...\n");
+        System.out.println("You follow the sweet sound and the line formed by the fireflies\n");
+        System.out.println("You finally reach the end to find a presence with their back turnt to you, with a female aura most would consider unparalleled.\n");
+        System.out.println("You immediately recognized the shape, and as she turnt her back, the illusion shattered...\n");
+        System.out.println("The fireflies vaporized, and the angelic voice bled of deception.\n");
+        System.out.println("It was Sindel's body, adulterated by a tormented soul.\n");
+        System.out.println("You know you have to defeat it, but hesitation weakens your grip.\n");
+        System.out.println("------------!!! BOSS FIGHT !!!------------\n");
+        System.out.println("Evil Sindel has appeared!\n");
         battle(new Enemy("Evil Sindel", 20));
         ThirdBossDefeated = 1;
         ActiveBossFight = 0;
 
     }
-     //----------------------------------------------------------------------------------------------------------------------------
+
 
 
     /**
@@ -416,7 +441,7 @@ public class GameLogic {
         printHeading("You meet a mysterious stranger.\nHe offers you something!");
         int price = (int) (Math.random()* (10 + player.pots*3) + 10 + player.pots);
         System.out.println("- Magic Potion: " + price + " gold.");
-        printSeperator(20);
+        printSeperator(30);
         //ask player if he wants to buy one
         System.out.println("Do you want to buy one?\n(1)Yes!\n(2) No thanks.");
         int input = readInt("-> ", 2);
@@ -494,7 +519,7 @@ public class GameLogic {
             printHeading(enemy.name + "\nnHP: " + enemy.hp + "/" + enemy.maxHp);
             printHeading(player.name + "\nnHP: " + player.hp + "/" + player.maxHp);
             System.out.println("Choose an action:");
-            printSeperator(20);
+            printSeperator(30);
             System.out.println("(1) Fight\n(2) Use Potion\n(3) Run Away\n(4) Judgement");
             int input = readInt("-> ", 4);
             //react accordingly to player input
@@ -516,7 +541,7 @@ public class GameLogic {
                 clearConsole();
                 printHeading("BATTLE");
                 System.out.println("You dealt " + dmg + " damage to " + enemy.name + ".");
-                printSeperator(15);
+                printSeperator(30);
                 System.out.println(enemy.name + " dealt " + dmgTook + " damage to you.");
                 anythingToContinue();
 
@@ -568,7 +593,7 @@ public class GameLogic {
                     //player CANNOT take a potion
                     printHeading("You don't have any potions or you're at full health.");
                     System.out.println("HP: "+player.hp + "/" + player.maxHp);
-                    printSeperator(20);
+                    printSeperator(30);
                     System.out.println("Number of Potions: " + player.pots);
                     anythingToContinue();
                 }
